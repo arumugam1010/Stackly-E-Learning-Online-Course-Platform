@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blog - eLEARNING</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/all.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+        <!-- Mobile Sidebar Drawer -->
+    <nav id="mobile-sidebar" class="d-lg-none">
+      <div class="sidebar-header d-flex align-items-center justify-content-between">
+        <a href="index.html" class="d-flex align-items-center text-decoration-none flex-grow-1">
+          <img src="img/logo-stackly.webp" alt="Logo" style="height: 65px; max-width: 100%; object-fit: contain;" />
+        </a>
+        <button id="close-mobile-sidebar" class="btn text-white p-0 ms-2" style="background: transparent; border: none; font-size: 12px; line-height: 1;">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <ul class="list-unstyled components">
+        <li class="active"><a href="index.html"><i class="fa fa-home me-2"></i>Home</a></li>
+        <li><a href="about.html"><i class="fa fa-info-circle me-2"></i>About</a></li>
+        <li><a href="courses.html"><i class="fa fa-book-open me-2"></i>Courses</a></li>
+        <li><a href="pricing.html"><i class="fa fa-tags me-2"></i>Pricing</a></li>
+        <li><a href="team.html"><i class="fa fa-users me-2"></i>Our Team</a></li>
+        <li><a href="testimonial.html"><i class="fa fa-comments me-2"></i>Testimonials</a></li>
+        <li><a href="blog.html"><i class="fa fa-blog me-2"></i>Blog</a></li>
+        <li><a href="faq.html"><i class="fa fa-question-circle me-2"></i>FAQ</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope me-2"></i>Contact</a></li>
+                <li class="mt-3 border-top pt-2"><a href="login.html" id="join-mobile-btn" class="text-info fw-bold"><i class="fa fa-sign-in-alt me-2"></i>Join Now</a></li>
+        <li class="mt-3 px-3 py-2 text-muted sidebar-contact-info" style="font-size: 11px; border-top: 1px dashed rgba(255,255,255,0.1); list-style-type: none;">
+          <div class="mb-2">
+            <strong class="text-white d-block mb-1" style="font-size: 10px; opacity: 0.8; letter-spacing: 0.5px;">Contact</strong>
+            <i class="fa fa-phone me-2 text-info"></i>0987654321
+          </div>
+          <div class="mb-2" style="word-break: break-all;">
+            <strong class="text-white d-block mb-1" style="font-size: 10px; opacity: 0.8; letter-spacing: 0.5px;">Email</strong>
+            <i class="fa fa-envelope me-2 text-info"></i>info@stackly.com
+          </div>
+          <div>
+            <strong class="text-white d-block mb-1" style="font-size: 10px; opacity: 0.8; letter-spacing: 0.5px;">Address</strong>
+            <i class="fa fa-map-marker-alt me-2 text-info"></i>Stackly Clothing, Chinna Tirupathi<br/>Salem, Tamil Nadu - 636008
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Navbar Start -->
+    <nav
+      class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0"
+    >
+      <a
+        href="index.html"
+        class="navbar-brand d-flex align-items-center px-4 px-lg-5"
+      >
+        <img
+          src="img/logo-stackly.webp"
+          alt="Logo"
+          style="height: 40px; margin-right: 10px"
+        />
+      </a>
+      <button
+        type="button"
+        class="navbar-toggler me-4"
+        id="mobile-sidebar-toggle"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+          <a href="index.html" class="nav-item nav-link">Home</a>
+          <a href="about.html" class="nav-item nav-link">About</a>
+          <a href="courses.html" class="nav-item nav-link">Courses</a>
+          <a href="pricing.html" class="nav-item nav-link">Pricing</a>
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Pages</a
+            >
+            <div class="dropdown-menu fade-down m-0">
+              <a href="team.html" class="dropdown-item">Our Team</a>
+              <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+            </div>
+          </div>
+          <a href="blog.html" class="nav-item nav-link active">Blog</a>
+          <a href="faq.html" class="nav-item nav-link">FAQ</a>
+          <a href="contact.html" class="nav-item nav-link">Contact</a>
+        </div>
+        <a
+          href="login.html"
+          id="join-btn"
+          class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+          >Join Now<i class="fa fa-arrow-right ms-3"></i
+        ></a>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header blog-header">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center">
+            <h1 class="display-3 text-white animated slideInDown">
+              Latest Articles
+            </h1>
+            <p class="text-white-50 fs-5 mb-4 mx-auto" style="max-width: 600px">
+              Read the latest news, updates, guides, and tutorials from our
+              experienced industry professionals and educators.
+            </p>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item">
+                  <a class="text-white" href="index.html">Home</a>
+                </li>
+                <li
+                  class="breadcrumb-item text-white active"
+                  aria-current="page"
+                >
+                  Blog
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Blog Content Start -->
+    <div class="container-xxl py-5">
+      <div class="container">
+        <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+          <h6 class="section-title bg-white text-center text-primary px-3">
+            Our Blog
+          </h6>
+          <h1 class="mb-3">Read Our Educational Insights</h1>
+        </div>
+        <div class="row g-4">
+          <!-- Post 1 -->
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+              <img src="img/course-1.webp" class="card-img-top" alt="React" />
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <small class="text-muted"
+                    ><i class="fa fa-calendar-alt text-primary me-2"></i>July
+                    12, 2026</small
+                  >
+                  <small class="text-muted ms-auto"
+                    ><i class="fa fa-clock text-primary me-2"></i>5 min
+                    read</small
+                  >
+                </div>
+                <h5 class="card-title mb-3">
+                  <a href="404.html" class="text-dark text-decoration-none"
+                    >How to Learn React in 2026: A Step-by-Step Path</a
+                  >
+                </h5>
+                <p class="text-muted small">
+                  React remains the top choice for building dynamic web
+                  interfaces. Here is the modern learning path you need to
+                  follow...
+                </p>
+                <a href="404.html" class="btn btn-sm btn-outline-primary mt-2"
+                  >Read Post</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Post 2 -->
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+              <img src="img/course-2.webp" class="card-img-top" alt="Design" />
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <small class="text-muted"
+                    ><i class="fa fa-calendar-alt text-primary me-2"></i>July
+                    10, 2026</small
+                  >
+                  <small class="text-muted ms-auto"
+                    ><i class="fa fa-clock text-primary me-2"></i>4 min
+                    read</small
+                  >
+                </div>
+                <h5 class="card-title mb-3">
+                  <a href="404.html" class="text-dark text-decoration-none"
+                    >Top 5 Web Design Trends Dominating This Year</a
+                  >
+                </h5>
+                <p class="text-muted small">
+                  From organic gradients and glassmorphism to micro-animations,
+                  we outline the leading styling trends currently...
+                </p>
+                <a href="404.html" class="btn btn-sm btn-outline-primary mt-2"
+                  >Read Post</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Post 3 -->
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+              <img src="img/course-3.webp" class="card-img-top" alt="Coding" />
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <small class="text-muted"
+                    ><i class="fa fa-calendar-alt text-primary me-2"></i>July
+                    08, 2026</small
+                  >
+                  <small class="text-muted ms-auto"
+                    ><i class="fa fa-clock text-primary me-2"></i>6 min
+                    read</small
+                  >
+                </div>
+                <h5 class="card-title mb-3">
+                  <a href="404.html" class="text-dark text-decoration-none"
+                    >Best Coding Practices for Clean, Readable CSS</a
+                  >
+                </h5>
+                <p class="text-muted small">
+                  Writing neat stylesheets is critical for team scaling. Learn
+                  structure nesting, variable tokens, and formatting
+                  standards...
+                </p>
+                <a href="404.html" class="btn btn-sm btn-outline-primary mt-2"
+                  >Read Post</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Post 4 -->
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+              <img
+                src="img/course-1.webp"
+                class="card-img-top"
+                alt="Figma Masterclass"
+              />
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <small class="text-muted"
+                    ><i class="fa fa-calendar-alt text-primary me-2"></i>July
+                    06, 2026</small
+                  >
+                  <small class="text-muted ms-auto"
+                    ><i class="fa fa-clock text-primary me-2"></i>4 min
+                    read</small
+                  >
+                </div>
+                <h5 class="card-title mb-3">
+                  <a href="404.html" class="text-dark text-decoration-none"
+                    >Mastering Figma: Designing High-Fidelity UI Prototypes</a
+                  >
+                </h5>
+                <p class="text-muted small">
+                  Learn grid components, auto-layouts, variable styles, and
+                  interactive user interface flows step by step.
+                </p>
+                <a href="404.html" class="btn btn-sm btn-outline-primary mt-2"
+                  >Read Post</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Post 5 -->
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+              <img
+                src="img/course-2.webp"
+                class="card-img-top"
+                alt="AI Education"
+              />
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <small class="text-muted"
+                    ><i class="fa fa-calendar-alt text-primary me-2"></i>July
+                    04, 2026</small
+                  >
+                  <small class="text-muted ms-auto"
+                    ><i class="fa fa-clock text-primary me-2"></i>7 min
+                    read</small
+                  >
+                </div>
+                <h5 class="card-title mb-3">
+                  <a href="404.html" class="text-dark text-decoration-none"
+                    >The Future of Generative AI in Modern E-Learning
+                    Platforms</a
+                  >
+                </h5>
+                <p class="text-muted small">
+                  Explore how personalized AI tutors, automatic grading agents,
+                  and custom course structures change learning.
+                </p>
+                <a href="404.html" class="btn btn-sm btn-outline-primary mt-2"
+                  >Read Post</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Post 6 -->
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+              <img src="img/cat-2.webp" class="card-img-top" alt="Node API" />
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <small class="text-muted"
+                    ><i class="fa fa-calendar-alt text-primary me-2"></i>July
+                    01, 2026</small
+                  >
+                  <small class="text-muted ms-auto"
+                    ><i class="fa fa-clock text-primary me-2"></i>5 min
+                    read</small
+                  >
+                </div>
+                <h5 class="card-title mb-3">
+                  <a href="404.html" class="text-dark text-decoration-none"
+                    >Building Scalable REST APIs with Node.js and Express</a
+                  >
+                </h5>
+                <p class="text-muted small">
+                  Set up database routing architectures, authentication
+                  middlewares, security configurations and server checks.
+                </p>
+                <a href="404.html" class="btn btn-sm btn-outline-primary mt-2"
+                  >Read Post</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Blog Content End -->
+
+    <!-- Footer Start -->
+    <footer class="custom-footer py-4 mt-4">
+      <div class="container pt-3 pb-0">
+        <div class="row g-4">
+          <!-- Col 1: Logo & Description -->
+          <div class="col-lg-3 col-md-4">
+            <img
+              src="img/logo-stackly.webp"
+              alt="Logo"
+              style="height: 40px; margin-bottom: 25px"
+            />
+            <p>
+              Empower your future with industry-relevant online courses. Join
+              STACKLY eLEARNING to master design, coding, marketing, and
+              professional skills at your own pace.
+            </p>
+            <div class="social-icons mt-4">
+              <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+              <a href="404.html"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                  style="vertical-align: -0.125em"
+                >
+                  <path
+                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"
+                  /></svg
+              ></a>
+              <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+              <a href="404.html"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+
+          <!-- Col 2: Categories -->
+          <div class="col-lg-2 col-md-4">
+            <h5>Categories</h5>
+            <a href="courses.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Web Design</a
+            >
+            <a href="courses.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Graphic Design</a
+            >
+            <a href="courses.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Video Editing</a
+            >
+            <a href="courses.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Online Marketing</a
+            >
+          </div>
+
+          <!-- Col 3: Features -->
+          <div class="col-lg-2 col-md-4">
+            <h5>Features</h5>
+            <a href="about.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Expert Mentors</a
+            >
+            <a href="about.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Library Access</a
+            >
+            <a href="about.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Online Projects</a
+            >
+            <a href="about.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Certification</a
+            >
+          </div>
+
+          <!-- Col 4: Company -->
+          <div class="col-lg-1 col-md-4">
+            <h5>Company</h5>
+            <a href="index.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Home</a
+            >
+            <a href="about.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>About Us</a
+            >
+            <a href="courses.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Courses</a
+            >
+            <a href="pricing.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Pricing</a
+            >
+            <a href="blog.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Blog</a
+            >
+            <a href="contact.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Contact</a
+            >
+          </div>
+
+          <!-- Col 5: Support -->
+          <div class="col-lg-2 col-md-4">
+            <h5>Support</h5>
+            <a href="faq.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Help & FAQs</a
+            >
+            <a href="team.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Our Team</a
+            >
+            <a href="testimonial.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Testimonial</a
+            >
+            <a href="login.html" class="footer-link"
+              ><i class="fa fa-chevron-right"></i>Join Now</a
+            >
+          </div>
+
+          <!-- Col 6: Contact & Newsletter -->
+          <div class="col-lg-2 col-md-4 contact-info">
+            <h5>Contact</h5>
+            <p>
+              <i class="fa fa-map-marker-alt"></i>Stackly Clothing, Chinna Tirupathi, Salem, Tamil Nadu - 636008
+            </p>
+            <p><i class="fa fa-envelope"></i>info@stackly.com</p>
+            <p><i class="fa fa-phone"></i>0987654321</p>
+            <div class="subscribe-bar mt-4">
+              <input type="text" placeholder="Subscribe..." />
+              <button type="button">Go</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright-bar mt-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              &copy;
+              <a
+                class="border-bottom text-decoration-none text-muted"
+                href="index.html"
+                >STACKLY eLEARNING</a
+              >, All Rights Reserved.
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End -->
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (currentUser) {
+          $("#join-btn, #join-mobile-btn")
+            .html('Dashboard <i class="fa fa-arrow-right ms-3"></i>')
+            .attr("href", "dashboard.html");
+        } else {
+          $("#join-btn, #join-mobile-btn").attr("href", "login.html");
+        }
+
+        // Highlight active link in mobile sidebar dynamically
+        var path = window.location.pathname.split("/").pop();
+        if (!path || path === "") {
+          path = "index.html";
+        }
+        $("#mobile-sidebar ul li").removeClass("active");
+        $("#mobile-sidebar ul li a").each(function () {
+          var href = $(this).attr("href");
+          if (href === path) {
+            $(this).parent().addClass("active");
+          }
+        });
+
+        // Mobile Sidebar Drawer Toggler
+        $("#mobile-sidebar-toggle").on("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          $("#mobile-sidebar").addClass("active");
+          $("html, body").addClass("mobile-sidebar-open");
+        });
+
+        $("#close-mobile-sidebar").on("click", function () {
+          $("#mobile-sidebar").removeClass("active");
+          $("html, body").removeClass("mobile-sidebar-open");
+        });
+
+        // Hide when clicking outside
+        $(document).on("click", function (e) {
+          if (!$(e.target).closest("#mobile-sidebar").length && !$(e.target).closest("#mobile-sidebar-toggle").length) {
+            $("#mobile-sidebar").removeClass("active");
+            $("html, body").removeClass("mobile-sidebar-open");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

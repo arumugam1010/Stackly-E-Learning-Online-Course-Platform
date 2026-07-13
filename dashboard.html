@@ -1,0 +1,1860 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dashboard - eLEARNING</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link href="css/all.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Nunito", sans-serif;
+      }
+
+      body {
+        font-family: "Heebo", sans-serif;
+        background-color: #f0fbfc;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      .wrapper {
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+      #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        background: #181d38;
+        color: #fff;
+        transition: all 0.3s;
+        min-height: 100vh;
+      }
+      #sidebar .sidebar-header {
+        padding: 20px 20px 10px 20px;
+        background: #181d38;
+        text-align: center;
+        position: relative;
+      }
+      #close-sidebar {
+        display: none;
+      }
+      #sidebar ul.components {
+        padding: 20px 0;
+      }
+      #sidebar ul li a {
+        padding: 12px 20px;
+        font-size: 1.05em;
+        display: block;
+        color: #a3a7be;
+        text-decoration: none;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+      #sidebar ul li a:hover,
+      #sidebar ul li.active > a {
+        color: #fff;
+        background: #06bbcc;
+      }
+      #sidebar ul li a i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+      #content {
+        width: 100%;
+        padding: 0;
+        min-height: 100vh;
+        transition: all 0.3s;
+        background-color: #f0fbfc;
+        display: flex;
+        flex-direction: column;
+      }
+      .panel-container-wrapper {
+        flex-grow: 1;
+        padding: 0 30px 30px 30px;
+      }
+
+      .navbar-dashboard {
+        background-color: #ffffff;
+        border-radius: 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        margin-bottom: 25px;
+        padding: 20px 30px !important;
+      }
+      .metric-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        background-color: #ffffff;
+        transition: transform 0.3s;
+      }
+      .metric-card:hover {
+        transform: translateY(-5px);
+      }
+      .table-container {
+        background: #fff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        overflow-x: auto;
+      }
+      .panel-content {
+        animation: fadeIn 0.4s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Dashboard Responsive support for small viewports down to 150px with Hamburger Off-Canvas */
+      #sidebarCollapse {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .wrapper {
+          display: block !important;
+        }
+        #sidebar {
+          position: fixed !important;
+          top: 0;
+          left: -70%;
+          height: 100vh !important;
+          z-index: 1050 !important;
+          width: 70% !important;
+          min-width: 70% !important;
+          max-width: 70% !important;
+          transition: all 0.3s ease;
+          box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
+        }
+        #sidebar .sidebar-header {
+          padding: 15px 5px !important;
+        }
+        #sidebar .sidebar-header a {
+          padding: 5px !important;
+          display: block !important;
+          width: 100% !important;
+        }
+        #sidebar .sidebar-header a img {
+          max-width: 95% !important;
+          height: 45px !important;
+          display: inline-block !important;
+          object-fit: contain;
+        }
+        #sidebar.active {
+          left: 0 !important;
+        }
+        #sidebar.active ~ #content {
+          filter: blur(4px);
+          pointer-events: none;
+        }
+        body.sidebar-open,
+        html.sidebar-open,
+        body.sidebar-open .wrapper {
+          overflow: hidden !important;
+          height: 100vh !important;
+          max-height: 100vh !important;
+        }
+        #close-sidebar {
+          display: block !important;
+        }
+        #sidebar ul.components {
+          padding: 15px 0 !important;
+          display: block !important;
+        }
+        #sidebar ul li {
+          width: 100% !important;
+        }
+        #sidebar ul li a {
+          padding: 10px 15px !important;
+          font-size: 0.9em !important;
+          border-radius: 0 !important;
+        }
+        #sidebar ul li a i {
+          font-size: 1.1em !important;
+          margin-right: 8px !important;
+        }
+        #sidebarCollapse {
+          display: inline-block !important;
+          padding: 4px 8px !important;
+          font-size: 14px !important;
+        }
+        .panel-container-wrapper {
+          padding: 15px !important;
+        }
+        .navbar-dashboard {
+          padding: 4px 10px !important;
+          margin-bottom: 8px !important;
+        }
+        .navbar-dashboard h4 {
+          font-size: 15px !important;
+        }
+      }
+
+      @media (max-width: 280px) {
+        #sidebar .sidebar-header {
+          padding: 10px 3px !important;
+        }
+        #sidebar .sidebar-header a img {
+          max-width: 95% !important;
+          height: 38px !important;
+        }
+        #sidebar ul.components {
+          flex-direction: column !important;
+          align-items: stretch !important;
+          padding: 5px !important;
+        }
+        #sidebar ul li a {
+          font-size: 10px !important;
+          padding: 5px 8px !important;
+        }
+        #sidebar ul li a i {
+          font-size: 11px !important;
+          margin-right: 5px !important;
+        }
+        .panel-container-wrapper {
+          padding: 4px !important;
+        }
+        .navbar-dashboard {
+          padding: 2px 4px !important;
+          margin-bottom: 4px !important;
+        }
+        .navbar-dashboard h4 {
+          font-size: 11px !important;
+        }
+        #sidebarCollapse {
+          padding: 2px 5px !important;
+          font-size: 11px !important;
+        }
+        /* Grid, Font sizes & Card scaling for ultra narrow screens */
+        body,
+        p,
+        span,
+        a,
+        li,
+        td,
+        th,
+        label,
+        button,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6,
+        .fw-bold,
+        .card-title {
+          font-size: 11px !important;
+        }
+        .row {
+          margin-right: 0 !important;
+          margin-left: 0 !important;
+        }
+        .row > * {
+          padding-right: 2px !important;
+          padding-left: 2px !important;
+          max-width: 100% !important;
+          overflow: hidden !important;
+        }
+        .table-container {
+          padding: 8px !important;
+          max-width: 100% !important;
+          overflow-x: auto !important;
+        }
+        .table-responsive {
+          margin: 0 !important;
+          max-width: 100% !important;
+          width: 100% !important;
+          overflow-x: auto !important;
+          display: block !important;
+          -webkit-overflow-scrolling: touch;
+        }
+        .metric-card {
+          padding: 6px !important;
+        }
+        .metric-card div[style*="width: 50px"] {
+          width: 30px !important;
+          height: 30px !important;
+        }
+        .metric-card i.fa-2x {
+          font-size: 1.1rem !important;
+        }
+        .metric-card h3 {
+          font-size: 12px !important;
+          margin-top: 4px !important;
+        }
+        .p-4,
+        .p-5,
+        .p-3 {
+          padding: 8px !important;
+        }
+      }
+
+      @media (max-width: 180px) {
+        #sidebar ul li a {
+          font-size: 9.5px !important;
+          padding: 4px 6px !important;
+        }
+        body,
+        p,
+        span,
+        a,
+        li,
+        td,
+        th,
+        label,
+        button,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6,
+        .fw-bold,
+        .card-title {
+          font-size: 9px !important;
+        }
+        .navbar-dashboard {
+          flex-direction: column !important;
+          gap: 5px !important;
+          align-items: center !important;
+        }
+        .panel-container-wrapper {
+          padding: 2px !important;
+        }
+      }
+
+      /* Force th and td to stay in a single line and enable scrolling */
+      th,
+      td {
+        white-space: nowrap !important;
+      }
+      .table-responsive table {
+        min-width: 480px !important; /* Force table to maintain full layout width on mobile */
+      }
+      .table-responsive {
+        overflow-x: auto !important;
+        display: block !important;
+        width: 100% !important;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <nav id="sidebar">
+        <div class="sidebar-header d-flex align-items-center justify-content-between">
+          <a
+            href="dashboard.html"
+            class="d-flex align-items-center justify-content-center text-decoration-none flex-grow-1"
+          >
+            <img src="img/logo-stackly.webp" alt="Logo" style="height: 35px; max-width: 100%; object-fit: contain;" />
+          </a>
+          <!-- Close button for mobile screen view -->
+          <button
+            id="close-sidebar"
+            class="btn text-white p-0 ms-2"
+            style="background: transparent; border: none; font-size: 22px; line-height: 1; outline: none; box-shadow: none;"
+          >
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+
+        <ul class="list-unstyled components" id="sidebar-links">
+          <li class="active">
+            <a data-target="overview"><i class="fa fa-home"></i>Overview</a>
+          </li>
+          <li>
+            <a data-target="my-courses"
+              ><i class="fa fa-book-open"></i>My Courses</a
+            >
+          </li>
+          <li>
+            <a data-target="course-manager"
+              ><i class="fa fa-folder-open"></i>Course Manager</a
+            >
+          </li>
+          <li>
+            <a data-target="users-students"
+              ><i class="fa fa-users"></i>Users & Students</a
+            >
+          </li>
+          <li>
+            <a data-target="analytics-earnings"
+              ><i class="fa fa-chart-bar"></i>Analytics & Earnings</a
+            >
+          </li>
+          <li>
+            <a data-target="certificates"
+              ><i class="fa fa-award"></i>Certificates</a
+            >
+          </li>
+          <li>
+            <a data-target="announcements"
+              ><i class="fa fa-bell"></i>Announcements</a
+            >
+          </li>
+          <li>
+            <a data-target="help-support"
+              ><i class="fa fa-question-circle"></i>Help & Support</a
+            >
+          </li>
+          <li>
+            <a data-target="settings"><i class="fa fa-cog"></i>Settings</a>
+          </li>
+        </ul>
+        <div class="px-4 py-3 border-top border-secondary">
+          <a id="logout-btn" class="text-danger fw-bold text-decoration-none" style="cursor: pointer; display: block;">
+            <i class="fa fa-sign-out-alt me-2"></i>Logout
+          </a>
+        </div>
+      </nav>
+
+      <!-- Page Content -->
+      <div id="content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light navbar-dashboard flex-column align-items-stretch">
+          <div class="container-fluid d-flex align-items-center justify-content-between p-0">
+            <a href="dashboard.html" class="navbar-brand d-flex align-items-center p-0 m-0">
+              <img src="img/logo-stackly.webp" alt="Logo" style="height: 32px;" />
+            </a>
+            <h4 class="m-0 text-center flex-grow-1 px-3 d-none d-sm-block" id="welcome-message" style="font-size: 16px;">Welcome Back!</h4>
+            <button
+              type="button"
+              id="sidebarCollapse"
+              class="btn btn-outline-primary"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
+          <!-- Show Welcome message on extra small screens below the header row -->
+          <div class="w-100 text-start d-block d-sm-none" style="margin-top: -3px !important; margin-bottom: 2px !important;">
+            <h5 class="m-0 fw-bold" id="welcome-message-mobile" style="font-size: 12px; margin: 0 !important; line-height: 1.1; padding: 0 !important;">Welcome Back!</h5>
+          </div>
+        </nav>
+
+        <!-- Main Dashboard View Container -->
+        <div id="panel-container">
+          <!-- 1. Overview Panel -->
+          <div id="panel-overview" class="panel-content">
+            <!-- Dynamic overview cards loaded via Javascript depending on Role -->
+            <div class="row g-4 mb-4" id="overview-metrics-row"></div>
+            <div class="row g-4">
+              <div class="col-md-8">
+                <div
+                  class="table-container mb-4"
+                  id="overview-main-table"
+                ></div>
+              </div>
+              <div class="col-md-4">
+                <div class="table-container" id="overview-secondary-card"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. My Courses Panel -->
+          <div id="panel-my-courses" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4">
+                <i class="fa fa-book-open text-primary me-2"></i>My Courses
+              </h5>
+              <div id="my-courses-content"></div>
+            </div>
+          </div>
+
+          <!-- 3. Course Manager Panel -->
+          <div id="panel-course-manager" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4" id="course-manager-title">Course Manager</h5>
+              <div id="course-manager-content"></div>
+            </div>
+          </div>
+
+          <!-- 4. Users & Students Panel -->
+          <div id="panel-users-students" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4" id="users-students-title">Users & Students</h5>
+              <div id="users-students-content"></div>
+            </div>
+          </div>
+
+          <!-- 5. Analytics & Earnings Panel -->
+          <div id="panel-analytics-earnings" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4" id="analytics-earnings-title">
+                Analytics & Earnings
+              </h5>
+              <div id="analytics-earnings-content"></div>
+            </div>
+          </div>
+
+          <!-- 6. Certificates Panel -->
+          <div id="panel-certificates" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4">
+                <i class="fa fa-award text-primary me-2"></i>Certificates Center
+              </h5>
+              <div id="certificates-content"></div>
+            </div>
+          </div>
+
+          <!-- 7. Announcements Panel -->
+          <div id="panel-announcements" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4">
+                <i class="fa fa-bell text-primary me-2"></i>Announcements
+              </h5>
+              <div id="announcements-content"></div>
+            </div>
+          </div>
+
+          <!-- 8. Help & Support Panel -->
+          <div id="panel-help-support" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4">
+                <i class="fa fa-question-circle text-primary me-2"></i>Help &
+                Support
+              </h5>
+              <div id="help-support-content"></div>
+            </div>
+          </div>
+
+          <!-- 9. Settings Panel -->
+          <div id="panel-settings" class="panel-content d-none">
+            <div class="table-container">
+              <h5 class="mb-4">
+                <i class="fa fa-cog text-primary me-2"></i>Account Settings
+              </h5>
+              <div id="settings-content"></div>
+            </div>
+          </div>
+        </div>
+        <footer
+          class="text-center py-4 mt-auto text-muted small border-top"
+          style="background-color: #ffffff"
+        >
+          &copy; 2026 STACKLY eLEARNING. All rights reserved. |
+          <a href="about.html" class="text-decoration-none text-muted"
+            >About Us</a
+          >
+          | <a href="faq.html" class="text-decoration-none text-muted">FAQ</a>
+        </footer>
+      </div>
+    </div>
+
+    <!-- JS Files -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Sidebar collapse toggler logic
+        $("#sidebarCollapse").on("click", function (e) {
+          e.stopPropagation();
+          $("#sidebar").toggleClass("active");
+          $("html, body").toggleClass("sidebar-open", $("#sidebar").hasClass("active"));
+        });
+
+        // Hide sidebar when clicking outside on mobile
+        $(document).on("click", function (e) {
+          if ($(window).width() <= 768) {
+            if (
+              !$(e.target).closest("#sidebar").length &&
+              !$(e.target).closest("#sidebarCollapse").length
+            ) {
+              $("#sidebar").removeClass("active");
+              $("html, body").removeClass("sidebar-open");
+            }
+          }
+        });
+
+        // Hide sidebar when clicking any menu link
+        $(document).on("click", "#sidebar ul li a", function () {
+          if ($(window).width() <= 768) {
+            $("#sidebar").removeClass("active");
+            $("html, body").removeClass("sidebar-open");
+          }
+        });
+
+        // Close sidebar button logic
+        $(document).on("click", "#close-sidebar", function () {
+          $("#sidebar").removeClass("active");
+          $("html, body").removeClass("sidebar-open");
+        });
+
+        // Logout handler
+        $(document).on("click", "#logout-btn", function (e) {
+          e.preventDefault();
+          localStorage.removeItem("currentUser");
+          window.location.href = "login.html";
+        });
+
+        // Authenticate User
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (!currentUser) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Set Role Profile Layout
+        var role = currentUser.role.toLowerCase();
+        $("#user-role-badge").text(role);
+        $("#user-display-name").text(currentUser.name);
+        $("#welcome-message, #welcome-message-mobile").text("Welcome Back, " + currentUser.name + "!");
+
+        // Populate System Announcements (localStorage database)
+        var announcements = JSON.parse(
+          localStorage.getItem("announcements"),
+        ) || [
+          {
+            title: "Live Python Q&A Scheduled",
+            msg: "Join the live Q&A session with Python experts on Friday at 5:00 PM.",
+            date: "Today at 10:00 AM",
+            by: "Admin",
+          },
+          {
+            title: "System Maintenance",
+            msg: "The platform will undergo maintenance this Sunday for 2 hours.",
+            date: "Yesterday",
+            by: "System",
+          },
+          {
+            title: "Global Coding Hackathon 2026",
+            msg: "Submit your final web development project by July 28 to win cash rewards and certificates.",
+            date: "3 days ago",
+            by: "Hackathon Organizer",
+          },
+          {
+            title: "Figma UI Masterclass Published",
+            msg: "A new design course is available today. Head to course manager to check it out.",
+            date: "5 days ago",
+            by: "Admin",
+          },
+        ];
+        localStorage.setItem("announcements", JSON.stringify(announcements));
+
+        // Populate Help Tickets (localStorage database)
+        var supportTickets = JSON.parse(
+          localStorage.getItem("supportTickets"),
+        ) || [
+          {
+            subject: "Certificate download failing",
+            msg: "Whenever I click download, it gives me a network error.",
+            status: "Open",
+            user: "student@elearning.com",
+          },
+          {
+            subject: "Course upload price error",
+            msg: "I cannot set a decimal price value for my courses.",
+            status: "Closed",
+            user: "instructor@elearning.com",
+          },
+        ];
+        localStorage.setItem("supportTickets", JSON.stringify(supportTickets));
+
+        // Initialize Dynamic Content Views
+        renderDashboardData();
+
+        // JQuery SPA Sidebar Panel Switcher
+        $("#sidebar-links a, [data-target-profile]").on("click", function (e) {
+          e.preventDefault();
+          var targetTab =
+            $(this).data("target") || $(this).data("target-profile");
+
+          // Update Sidebar Active state
+          $("#sidebar-links li").removeClass("active");
+          $("#sidebar-links a[data-target='" + targetTab + "']")
+            .parent()
+            .addClass("active");
+
+          // Toggle content panels
+          $(".panel-content").addClass("d-none");
+          $("#panel-" + targetTab).removeClass("d-none");
+        });
+
+        // Dynamic content population based on current logged in user role
+        // Dynamic content population based on current logged in user role
+        function renderDashboardData() {
+          var users = JSON.parse(localStorage.getItem("users")) || [];
+
+          // ======================= OVERVIEW PANEL =======================
+          var metricsHtml = "";
+          var mainTableHtml = "";
+          var secondaryCardHtml = "";
+
+          if (role === "student") {
+            metricsHtml = `
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Enrolled Courses</h6>
+                      <h2 class="mb-0 fw-bold">6</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-primary"><i class="fa fa-graduation-cap fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Completed</h6>
+                      <h2 class="mb-0 fw-bold">2</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-success"><i class="fa fa-check-circle fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Study Hours</h6>
+                      <h2 class="mb-0 fw-bold">48.5 hrs</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-warning"><i class="fa fa-clock fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Certificates Earned</h6>
+                      <h2 class="mb-0 fw-bold">2</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-danger"><i class="fa fa-award fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            mainTableHtml = `
+              <h5 class="mb-4"><i class="fa fa-list text-primary me-2"></i>My Learning Progress</h5>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr><th>Course Name</th><th>Progress</th><th>Hours Spent</th><th>Status</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Web Design for Beginners</td><td>75% Completed</td><td>18.5 hrs</td><td><span class="badge bg-warning">In Progress</span></td></tr>
+                    <tr><td>Mastering React & Redux</td><td>30% Completed</td><td>10.2 hrs</td><td><span class="badge bg-warning">In Progress</span></td></tr>
+                    <tr><td>Python Bootcamp 2026</td><td>100% Completed</td><td>15.8 hrs</td><td><span class="badge bg-success">Completed</span></td></tr>
+                    <tr><td>Figma UI/UX Essentials</td><td>45% Completed</td><td>4.0 hrs</td><td><span class="badge bg-warning">In Progress</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <h5 class="mt-5 mb-4"><i class="fa fa-tasks text-primary me-2"></i>Upcoming Deadlines & Tasks</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0 py-3 border-bottom">
+                  <div>
+                    <h6 class="mb-1 fw-bold">HTML/CSS Responsive Layout Assignment</h6>
+                    <small class="text-muted">Web Design for Beginners | Due in 2 days</small>
+                  </div>
+                  <span class="badge bg-danger rounded-pill">High Priority</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0 py-3 border-bottom">
+                  <div>
+                    <h6 class="mb-1 fw-bold">React SPA Coding Challenge</h6>
+                    <small class="text-muted">Mastering React & Redux | Due in 5 days</small>
+                  </div>
+                  <span class="badge bg-warning rounded-pill">Medium Priority</span>
+                </li>
+              </ul>
+            `;
+
+            secondaryCardHtml = `
+              <h5 class="mb-3"><i class="fa fa-history text-primary me-2"></i>Recent Activity Timeline</h5>
+              <ul class="list-unstyled mb-5">
+                <li class="border-left pl-3 pb-3 position-relative" style="border-left: 2px solid var(--primary-theme); padding-left: 15px;">
+                  <span class="position-absolute bg-primary rounded-circle" style="width: 10px; height: 10px; left: -6px; top: 5px;"></span>
+                  <p class="mb-0 fw-bold">Completed Lecture 12</p>
+                  <p class="text-muted mb-0 small">Web Design | Today at 2:30 PM</p>
+                </li>
+                <li class="border-left pl-3 pb-3 position-relative" style="border-left: 2px solid var(--primary-theme); padding-left: 15px;">
+                  <span class="position-absolute bg-primary rounded-circle" style="width: 10px; height: 10px; left: -6px; top: 5px;"></span>
+                  <p class="mb-0 fw-bold">Submitted Code Assignment</p>
+                  <p class="text-muted mb-0 small">Python Bootcamp | Yesterday</p>
+                </li>
+                <li class="border-left pl-3 pb-3 position-relative" style="border-left: 2px solid var(--primary-theme); padding-left: 15px;">
+                  <span class="position-absolute bg-primary rounded-circle" style="width: 10px; height: 10px; left: -6px; top: 5px;"></span>
+                  <p class="mb-0 fw-bold">Downloaded certificate</p>
+                  <p class="text-muted mb-0 small">JavaScript Basics | July 10, 2026</p>
+                </li>
+              </ul>
+
+              <h5 class="mb-3"><i class="fa fa-bullhorn text-primary me-2"></i>Platform Alerts</h5>
+              <div class="alert alert-info border-0 p-3 small mb-0">
+                <strong>Hackathon reminder!</strong> The global coding contest ends in 15 days. Submissions are open.
+              </div>
+            `;
+          } else if (role === "instructor") {
+            metricsHtml = `
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">My Active Courses</h6>
+                      <h2 class="mb-0 fw-bold">2</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-primary"><i class="fa fa-book fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Total Students</h6>
+                      <h2 class="mb-0 fw-bold">1,820</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-success"><i class="fa fa-users fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Average Rating</h6>
+                      <h2 class="mb-0 fw-bold">4.9★</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-warning"><i class="fa fa-star fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Monthly Earnings</h6>
+                      <h2 class="mb-0 fw-bold">$3,840</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-danger"><i class="fa fa-dollar-sign fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            mainTableHtml = `
+              <h5 class="mb-4"><i class="fa fa-list text-primary me-2"></i>My Teaching Courses</h5>
+              <table class="table table-hover">
+                <thead>
+                  <tr><th>Course Name</th><th>Students</th><th>Earnings</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>HTML & CSS Basics</td><td>1,050</td><td>$2,100</td><td><span class="badge bg-success">Active</span></td></tr>
+                  <tr><td>Advanced JavaScript</td><td>770</td><td>$1,740</td><td><span class="badge bg-success">Active</span></td></tr>
+                </tbody>
+              </table>
+
+              <h5 class="mt-5 mb-4"><i class="fa fa-envelope-open text-primary me-2"></i>Recent Student Messages</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0 py-3 border-bottom">
+                  <div>
+                    <h6 class="mb-1 fw-bold">"Can we use Flexbox for layout task?"</h6>
+                    <small class="text-muted">From Alice Cooper (HTML & CSS Basics) | 2 hours ago</small>
+                  </div>
+                  <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Reply</button>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0 py-3 border-bottom">
+                  <div>
+                    <h6 class="mb-1 fw-bold">"REST API middleware routing error on task"</h6>
+                    <small class="text-muted">From Bob Miller (Advanced JavaScript) | Yesterday</small>
+                  </div>
+                  <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Reply</button>
+                </li>
+              </ul>
+            `;
+
+            secondaryCardHtml = `
+              <h5 class="mb-3"><i class="fa fa-question-circle text-primary me-2"></i>Student Requests</h5>
+              <ul class="list-unstyled mb-5">
+                <li class="border-bottom pb-2 mb-2">
+                  <p class="mb-0 fw-bold">Doubt in Lecture 34 (CSS Grid)</p>
+                  <p class="text-muted mb-0 small">Raised by John Doe (HTML & CSS Basics)</p>
+                </li>
+                <li>
+                  <p class="mb-0 fw-bold">Certificate Request Pending</p>
+                  <p class="text-muted mb-0 small">Raised by Sarah Connor (Advanced JS)</p>
+                </li>
+              </ul>
+
+              <h5 class="mb-3"><i class="fa fa-info-circle text-primary me-2"></i>Instructor Tips</h5>
+              <div class="alert alert-warning border-0 p-3 small mb-0">
+                Updating your course description regularly helps boost search ranking index placements by 15%.
+              </div>
+            `;
+          } else if (role === "admin") {
+            metricsHtml = `
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Total System Users</h6>
+                      <h2 class="mb-0 fw-bold">${users.length}</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-primary"><i class="fa fa-users fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Total Courses</h6>
+                      <h2 class="mb-0 fw-bold">14</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-success"><i class="fa fa-graduation-cap fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Platform Revenue</h6>
+                      <h2 class="mb-0 fw-bold">$24,530</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-warning"><i class="fa fa-dollar-sign fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card metric-card p-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <h6 class="text-muted text-uppercase mb-2">Support Tickets</h6>
+                      <h2 class="mb-0 fw-bold">${supportTickets.filter((t) => t.status === "Open").length}</h2>
+                    </div>
+                    <div class="rounded-circle bg-light p-3 text-danger"><i class="fa fa-life-ring fa-2x"></i></div>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            mainTableHtml = `
+              <h5 class="mb-4"><i class="fa fa-users text-primary me-2"></i>Recent System Registrants</h5>
+              <table class="table">
+                <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+                <tbody>
+                  ${users
+                    .slice(-4)
+                    .map(
+                      (u) => `
+                    <tr><td>${u.name}</td><td>${u.email}</td><td><span class="badge bg-info text-capitalize">${u.role}</span></td></tr>
+                  `,
+                    )
+                    .join("")}
+                </tbody>
+              </table>
+
+              <h5 class="mt-5 mb-4"><i class="fa fa-shield-alt text-primary me-2"></i>System Integrity Status</h5>
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="bg-light p-3 rounded">
+                    <span class="text-muted small">Server Load</span>
+                    <h6 class="mb-0 fw-bold text-success">14% (Optimal)</h6>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="bg-light p-3 rounded">
+                    <span class="text-muted small">Database Sync</span>
+                    <h6 class="mb-0 fw-bold text-success">Healthy</h6>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            secondaryCardHtml = `
+              <h5 class="mb-3"><i class="fa fa-cogs text-primary me-2"></i>Platform Actions</h5>
+              <div class="d-grid gap-2 mb-4">
+                <button class="btn btn-outline-primary btn-sm text-start" onclick="$('[data-target=\'course-manager\']').click()"><i class="fa fa-check me-2"></i>Approve Pending Courses</button>
+                <button class="btn btn-outline-primary btn-sm text-start" onclick="$('[data-target=\'users-students\']').click()"><i class="fa fa-users me-2"></i>Manage User Accounts</button>
+                <button class="btn btn-outline-primary btn-sm text-start" onclick="$('[data-target=\'announcements\']').click()"><i class="fa fa-bell me-2"></i>Broadcast System Notice</button>
+              </div>
+
+              <h5 class="mb-3"><i class="fa fa-database text-primary me-2"></i>Database Backups</h5>
+              <div class="alert alert-success border-0 p-3 small mb-0">
+                <i class="fa fa-check me-2"></i>Last backup completed: Today at 4:00 AM (Cloud Archive).
+              </div>
+            `;
+          }
+
+          $("#overview-metrics-row").html(metricsHtml);
+          $("#overview-main-table").html(mainTableHtml);
+          $("#overview-secondary-card").html(secondaryCardHtml);
+
+          // ======================= 2. MY COURSES PANEL =======================
+          var myCoursesHtml = "";
+          if (role === "student") {
+            myCoursesHtml = `
+              <h5 class="mb-4">My Current Classes</h5>
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/course-1.webp" class="card-img-top" alt="Web Design">
+                    <div class="card-body">
+                      <h5 class="card-title">Web Design for Beginners</h5>
+                      <p class="card-text text-muted small">Master HTML, CSS, layouts, and responsive designs.</p>
+                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar" style="width: 75%;"></div></div>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/course-2.webp" class="card-img-top" alt="React">
+                    <div class="card-body">
+                      <h5 class="card-title">Mastering React & Redux</h5>
+                      <p class="card-text text-muted small">Build modern SPA frontend interfaces dynamically.</p>
+                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 30%;"></div></div>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/course-3.webp" class="card-img-top" alt="Python">
+                    <div class="card-body">
+                      <h5 class="card-title">Python Bootcamp 2026</h5>
+                      <p class="card-text text-muted small">Learn backend engineering, automation, and programming.</p>
+                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-success" style="width: 100%;"></div></div>
+                      <button class="btn btn-outline-success w-100" onclick="$('[data-target=\'certificates\']').click()"><i class="fa fa-award me-1"></i>View Certificate</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/cat-1.webp" class="card-img-top" alt="UI Design">
+                    <div class="card-body">
+                      <h5 class="card-title">Figma UI/UX Essentials</h5>
+                      <p class="card-text text-muted small">Design beautiful user interfaces and interactive wireframes.</p>
+                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-info" style="width: 45%;"></div></div>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/cat-2.webp" class="card-img-top" alt="JavaScript">
+                    <div class="card-body">
+                      <h5 class="card-title">Advanced JS REST APIs</h5>
+                      <p class="card-text text-muted small">Master Node.js, Express, databases, and restful architecture.</p>
+                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-danger" style="width: 90%;"></div></div>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/cat-4.webp" class="card-img-top" alt="SEO">
+                    <div class="card-body">
+                      <h5 class="card-title">SEO Optimization Blueprint</h5>
+                      <p class="card-text text-muted small">Index higher on Google search engine result pages.</p>
+                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-primary" style="width: 15%;"></div></div>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h5 class="mt-5 mb-4">Trending Learning Categories</h5>
+              <div class="row g-3 text-center">
+                <div class="col-md-3">
+                  <div class="bg-light p-4 rounded shadow-sm border border-light">
+                    <i class="fa fa-laptop-code fa-2x text-primary mb-2"></i>
+                    <h6 class="mb-1">Web Development</h6>
+                    <small class="text-muted">45 Courses</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="bg-light p-4 rounded shadow-sm border border-light">
+                    <i class="fa fa-palette fa-2x text-primary mb-2"></i>
+                    <h6 class="mb-1">Graphic Design</h6>
+                    <small class="text-muted">28 Courses</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="bg-light p-4 rounded shadow-sm border border-light">
+                    <i class="fa fa-chart-line fa-2x text-primary mb-2"></i>
+                    <h6 class="mb-1">Digital Marketing</h6>
+                    <small class="text-muted">18 Courses</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="bg-light p-4 rounded shadow-sm border border-light">
+                    <i class="fa fa-brain fa-2x text-primary mb-2"></i>
+                    <h6 class="mb-1">AI & Data Science</h6>
+                    <small class="text-muted">32 Courses</small>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else if (role === "instructor") {
+            myCoursesHtml = `
+              <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                  <thead>
+                    <tr><th>Course ID</th><th>Course Title</th><th>Category</th><th>Enrolled Students</th><th>Status</th><th>Action</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>#C101</td><td><strong>HTML & CSS Basics</strong></td><td>Web Design</td><td>1,050</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Manage Course</button></td></tr>
+                    <tr><td>#C102</td><td><strong>Advanced JavaScript</strong></td><td>Development</td><td>770</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Manage Course</button></td></tr>
+                    <tr><td>#C103</td><td><strong>Figma UI/UX Essentials</strong></td><td>Web Design</td><td>420</td><td><span class="badge bg-warning">Draft</span></td><td><button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Edit Draft</button></td></tr>
+                    <tr><td>#C104</td><td><strong>React & Redux Mastery</strong></td><td>Development</td><td>890</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Manage Course</button></td></tr>
+                    <tr><td>#C105</td><td><strong>Node.js Backend REST APIs</strong></td><td>Development</td><td>610</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Manage Course</button></td></tr>
+                    <tr><td>#C106</td><td><strong>AWS Architect Foundation</strong></td><td>Cloud Computing</td><td>340</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Manage Course</button></td></tr>
+                    <tr><td>#C107</td><td><strong>Python Data Science BootCamp</strong></td><td>Data Science</td><td>580</td><td><span class="badge bg-warning">Draft</span></td><td><button class="btn btn-sm btn-outline-primary" onclick="window.location.href='404.html'">Edit Draft</button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            `;
+          } else if (role === "admin") {
+            myCoursesHtml = `
+              <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                  <thead>
+                    <tr><th>ID</th><th>Title</th><th>Instructor</th><th>Students</th><th>Status</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>#C101</td><td>HTML & CSS Basics</td><td>John Doe</td><td>1,050</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-danger" onclick="window.location.href='404.html'">Deactivate</button></td></tr>
+                    <tr><td>#C102</td><td>Advanced JavaScript</td><td>John Doe</td><td>770</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-danger" onclick="window.location.href='404.html'">Deactivate</button></td></tr>
+                    <tr><td>#C103</td><td>Python Bootcamp</td><td>Jane Smith</td><td>540</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-danger" onclick="window.location.href='404.html'">Deactivate</button></td></tr>
+                    <tr><td>#C104</td><td>Figma UI/UX Essentials</td><td>Michael Brown</td><td>380</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-danger" onclick="window.location.href='404.html'">Deactivate</button></td></tr>
+                    <tr><td>#C105</td><td>Advanced JS REST APIs</td><td>Sarah Jenkins</td><td>290</td><td><span class="badge bg-success">Active</span></td><td><button class="btn btn-sm btn-danger" onclick="window.location.href='404.html'">Deactivate</button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            `;
+          }
+          $("#my-courses-content").html(myCoursesHtml);
+
+          // ======================= 3. COURSE MANAGER PANEL =======================
+          var courseManagerTitle = "";
+          var courseManagerHtml = "";
+
+          if (role === "student") {
+            courseManagerTitle = `<i class="fa fa-folder-open text-primary me-2"></i>Browse Course Catalog`;
+            courseManagerHtml = `
+              <div class="row mb-4">
+                <div class="col-md-8"><input type="text" class="form-control" placeholder="Search for courses (e.g. Photoshop, Marketing...)"></div>
+                <div class="col-md-4"><button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Search Catalog</button></div>
+              </div>
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/cat-1.webp" class="card-img-top" alt="Photoshop">
+                    <div class="card-body">
+                      <h5 class="card-title">Adobe Photoshop Masterclass</h5>
+                      <p class="card-text text-muted small">Learn graphic design, photo manipulation, and editing.</p>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/cat-3.webp" class="card-img-top" alt="Digital Marketing">
+                    <div class="card-body">
+                      <h5 class="card-title">Digital Marketing Bootcamp</h5>
+                      <p class="card-text text-muted small">Master SEO, social media marketing, and growth hacking.</p>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/cat-2.webp" class="card-img-top" alt="Java">
+                    <div class="card-body">
+                      <h5 class="card-title">Java Programming for Experts</h5>
+                      <p class="card-text text-muted small">Build advanced secure desktop and server applications.</p>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/cat-4.webp" class="card-img-top" alt="Illustrator">
+                    <div class="card-body">
+                      <h5 class="card-title">Vector Illustration Guide</h5>
+                      <p class="card-text text-muted small">Learn how to make professional logos, icons, and artwork.</p>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/about.webp" class="card-img-top" alt="AWS">
+                    <div class="card-body">
+                      <h5 class="card-title">AWS Cloud Architect Training</h5>
+                      <p class="card-text text-muted small">Deploy scalable, secure services on Amazon Web Services.</p>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 h-100">
+                    <img src="img/course-3.webp" class="card-img-top" alt="Python Data Science">
+                    <div class="card-body">
+                      <h5 class="card-title">Python for Data Analysis</h5>
+                      <p class="card-text text-muted small">Manipulate datasets, build statistical models and dashboards.</p>
+                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else if (role === "instructor") {
+            courseManagerTitle = `<i class="fa fa-plus-circle text-primary me-2"></i>Publish a New Course`;
+            courseManagerHtml = `
+              <div class="row g-4">
+                <div class="col-md-7">
+                  <form id="new-course-publish-form" class="bg-light p-4 rounded border border-light">
+                    <h6 class="mb-3 border-bottom pb-2">Course Details</h6>
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Course Title</label>
+                        <input type="text" class="form-control" placeholder="e.g. Master React Hooks" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Category</label>
+                        <select class="form-select" required>
+                          <option value="" disabled selected>Select category...</option>
+                          <option>Web Design</option>
+                          <option>Software Development</option>
+                          <option>Business & Marketing</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Course Description</label>
+                      <textarea class="form-control" rows="3" placeholder="Detail the course contents, syllabus, and target audience..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Publish Course</button>
+                  </form>
+                </div>
+                <div class="col-md-5">
+                  <div class="border p-4 rounded h-100 bg-white">
+                    <h6 class="border-bottom pb-2 mb-3"><i class="fa fa-lightbulb text-primary me-2"></i>Publishing Guidelines</h6>
+                    <ul class="small text-muted mb-0">
+                      <li class="mb-2">Course descriptions must be at least 150 characters.</li>
+                      <li class="mb-2">Ensure high-resolution cover images are linked.</li>
+                      <li class="mb-2">Include at least 5 structured modules.</li>
+                      <li class="mb-2">Provide downloadable resource links for assignments.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else if (role === "admin") {
+            courseManagerTitle = `<i class="fa fa-check-circle text-primary me-2"></i>Course Approval Queue`;
+            courseManagerHtml = `
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr><th>Course ID</th><th>Course Title</th><th>Instructor</th><th>Syllabus Details</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#C901</td>
+                      <td>Laravel API Development</td>
+                      <td>Jane Smith</td>
+                      <td>Building secure restful interfaces using PHP Laravel.</td>
+                      <td>
+                        <button class="btn btn-sm btn-success me-1" onclick="window.location.href='404.html'"><i class="fa fa-check"></i> Approve</button>
+                        <button class="btn btn-sm btn-danger" onclick="window.location.href='404.html'"><i class="fa fa-times"></i> Reject</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#C902</td>
+                      <td>DevOps & Docker Containers</td>
+                      <td>Michael Brown</td>
+                      <td>Introduction to microservices containerization, pipelines and Kubernetes orchestration.</td>
+                      <td>
+                        <button class="btn btn-sm btn-success me-1" onclick="window.location.href='404.html'"><i class="fa fa-check"></i> Approve</button>
+                        <button class="btn btn-sm btn-danger" onclick="window.location.href='404.html'"><i class="fa fa-times"></i> Reject</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            `;
+          }
+          $("#course-manager-title").html(courseManagerTitle);
+          $("#course-manager-content").html(courseManagerHtml);
+
+          // Handle Instructor Course Publish Form
+          $("#new-course-publish-form").on("submit", function (e) {
+            e.preventDefault();
+            alert(
+              "Course submitted successfully to Administrator for verification!",
+            );
+            this.reset();
+          });
+
+          // ======================= 4. USERS & STUDENTS PANEL =======================
+          var usersStudentsTitle = "";
+          var usersStudentsHtml = "";
+
+          if (role === "student") {
+            usersStudentsTitle = `<i class="fa fa-users text-primary me-2"></i>My Classmates`;
+            usersStudentsHtml = `
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>David Miller</h6>
+                    <span class="badge bg-success mb-1">Online</span>
+                    <small class="text-muted">Web Design student</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>Lisa Jones</h6>
+                    <span class="badge bg-secondary mb-1">Offline</span>
+                    <small class="text-muted">SEO student</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>Alex Carter</h6>
+                    <span class="badge bg-success mb-1">Online</span>
+                    <small class="text-muted">React student</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>Sophia Martinez</h6>
+                    <span class="badge bg-success mb-1">Online</span>
+                    <small class="text-muted">Python student</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>Michael Brown</h6>
+                    <span class="badge bg-secondary mb-1">Offline</span>
+                    <small class="text-muted">Figma student</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>Sarah Jenkins</h6>
+                    <span class="badge bg-success mb-1">Online</span>
+                    <small class="text-muted">React student</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>Alex Rivera</h6>
+                    <span class="badge bg-secondary mb-1">Offline</span>
+                    <small class="text-muted">Python student</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
+                    <i class="fa fa-user-circle fa-3x text-secondary mb-2"></i>
+                    <h6>Rohan Sharma</h6>
+                    <span class="badge bg-success mb-1">Online</span>
+                    <small class="text-muted">UI Design student</small>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else if (role === "instructor") {
+            usersStudentsTitle = `<i class="fa fa-users text-primary me-2"></i>Students Enrolled in Your Classes`;
+            usersStudentsHtml = `
+              <div class="row g-4">
+                <div class="col-md-8">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr><th>Name</th><th>Email</th><th>Course Enrolled</th><th>Progress</th><th>Enrolled Date</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Alice Cooper</td><td>alice@student.com</td><td>HTML & CSS Basics</td><td>75% Completed</td><td>Jan 12, 2026</td></tr>
+                        <tr><td>Bob Miller</td><td>bob@student.com</td><td>Advanced JavaScript</td><td>30% Completed</td><td>Feb 04, 2026</td></tr>
+                        <tr><td>Dave Miller</td><td>dave@student.com</td><td>HTML & CSS Basics</td><td>100% Completed</td><td>Feb 10, 2026</td></tr>
+                        <tr><td>Sophia Martinez</td><td>sophia@student.com</td><td>Advanced JavaScript</td><td>10% Completed</td><td>Mar 01, 2026</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="border p-4 rounded bg-light">
+                    <h6 class="border-bottom pb-2 mb-3"><i class="fa fa-trophy text-primary me-2"></i>Top Learners leaderboard</h6>
+                    <ul class="list-unstyled mb-0">
+                      <li class="mb-2 d-flex justify-content-between"><strong>1. Dave Miller</strong> <span class="text-success">100% progress</span></li>
+                      <li class="mb-2 d-flex justify-content-between"><strong>2. Alice Cooper</strong> <span class="text-warning">75% progress</span></li>
+                      <li class="mb-2 d-flex justify-content-between"><strong>3. Bob Miller</strong> <span class="text-muted">30% progress</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else if (role === "admin") {
+            usersStudentsTitle = `<i class="fa fa-users-cog text-primary me-2"></i>System User Management`;
+            usersStudentsHtml = `
+              <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                  <thead>
+                    <tr><th>Full Name</th><th>Email Address</th><th>Role</th><th>Action</th></tr>
+                  </thead>
+                  <tbody id="user-management-table-spa"></tbody>
+                </table>
+              </div>
+            `;
+          }
+          $("#users-students-title").html(usersStudentsTitle);
+          $("#users-students-content").html(usersStudentsHtml);
+
+          if (role === "admin") {
+            loadAdminUserManagementSPA();
+          }
+
+          function loadAdminUserManagementSPA() {
+            var activeUsers = JSON.parse(localStorage.getItem("users")) || [];
+            var tableBody = "";
+            activeUsers.forEach(function (u) {
+              tableBody += `
+                <tr>
+                  <td>${u.name}</td>
+                  <td>${u.email}</td>
+                  <td><span class="badge bg-info text-capitalize">${u.role}</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-danger delete-user-btn-spa" data-email="${u.email}">
+                      <i class="fa fa-trash"></i> Delete User
+                    </button>
+                  </td>
+                </tr>
+              `;
+            });
+            $("#user-management-table-spa").html(tableBody);
+          }
+
+          $(document)
+            .off("click", ".delete-user-btn-spa")
+            .on("click", ".delete-user-btn-spa", function () {
+              var emailToDelete = $(this).data("email");
+              if (
+                confirm(
+                  "Are you sure you want to delete user " + emailToDelete + "?",
+                )
+              ) {
+                var activeUsers =
+                  JSON.parse(localStorage.getItem("users")) || [];
+                activeUsers = activeUsers.filter(function (u) {
+                  return u.email !== emailToDelete;
+                });
+                localStorage.setItem("users", JSON.stringify(activeUsers));
+                loadAdminUserManagementSPA();
+                renderDashboardData(); // Refresh overview numbers too
+              }
+            });
+
+          // ======================= 5. ANALYTICS & EARNINGS PANEL =======================
+          var analyticsTitle = "";
+          var analyticsHtml = "";
+
+          if (role === "student") {
+            analyticsTitle = `<i class="fa fa-chart-line text-primary me-2"></i>My Learning Logs`;
+            analyticsHtml = `
+              <div class="row g-4">
+                <div class="col-md-8">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead><tr><th>Date</th><th>Module Session</th><th>Duration</th><th>Score</th></tr></thead>
+                      <tbody>
+                        <tr><td>Today</td><td>HTML & CSS Layout Grid</td><td>1.5 hrs</td><td>90% Quiz</td></tr>
+                        <tr><td>Yesterday</td><td>Javascript Basics Arrays</td><td>2.0 hrs</td><td>85% Quiz</td></tr>
+                        <tr><td>July 10, 2026</td><td>Introduction to programming</td><td>4.5 hrs</td><td>100% Test</td></tr>
+                        <tr><td>July 08, 2026</td><td>UX principles timeline</td><td>1.2 hrs</td><td>80% Quiz</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="border p-4 rounded bg-white">
+                    <h6 class="border-bottom pb-2 mb-3">Weekly Goals Progress</h6>
+                    <div class="progress mb-2" style="height: 20px;"><div class="progress-bar" style="width: 80%;">80% achieved</div></div>
+                    <small class="text-muted">Target: 10 hours/week. Current: 8 hours spent.</small>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else if (role === "instructor") {
+            analyticsTitle = `<i class="fa fa-chart-bar text-primary me-2"></i>Earnings & Enrollment Analytics`;
+            analyticsHtml = `
+              <div class="row g-4">
+                <div class="col-md-7">
+                  <h6 class="mb-3">Monthly Revenue Performance</h6>
+                  <div class="table-responsive">
+                    <table class="table align-middle">
+                      <thead><tr><th>Month</th><th>Students Joined</th><th>Net Revenue</th><th>Payout Status</th></tr></thead>
+                      <tbody>
+                        <tr><td>July 2026</td><td>210 students</td><td>$2,100</td><td><span class="badge bg-warning text-dark">Processing</span></td></tr>
+                        <tr><td>June 2026</td><td>340 students</td><td>$3,400</td><td><span class="badge bg-success">Paid</span></td></tr>
+                        <tr><td>May 2026</td><td>180 students</td><td>$1,800</td><td><span class="badge bg-success">Paid</span></td></tr>
+                        <tr><td>April 2026</td><td>290 students</td><td>$2,900</td><td><span class="badge bg-success">Paid</span></td></tr>
+                        <tr><td>March 2026</td><td>410 students</td><td>$4,100</td><td><span class="badge bg-success">Paid</span></td></tr>
+                        <tr><td>February 2026</td><td>250 students</td><td>$2,500</td><td><span class="badge bg-success">Paid</span></td></tr>
+                        <tr><td>January 2026</td><td>310 students</td><td>$3,100</td><td><span class="badge bg-success">Paid</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="bg-light p-4 rounded border border-light mb-4">
+                    <h6 class="border-bottom pb-2 mb-3">Engagement Breakdown</h6>
+                    <p class="small mb-1">Average watch time: <strong>14.5 mins</strong></p>
+                    <p class="small mb-1">Quiz Pass Ratio: <strong>88%</strong></p>
+                    <p class="small mb-0">Course completion rate: <strong>62%</strong></p>
+                  </div>
+                  
+                  <div class="border p-4 rounded bg-white">
+                    <h6 class="border-bottom pb-2 mb-3">Revenue Share Breakdown</h6>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="d-flex justify-content-between mb-2"><span>HTML & CSS Basics</span><strong>$10,500 (52%)</strong></li>
+                      <li class="d-flex justify-content-between mb-2"><span>Advanced JavaScript</span><strong>$7,700 (38%)</strong></li>
+                      <li class="d-flex justify-content-between mb-0"><span>React & Redux Mastery</span><strong>$2,100 (10%)</strong></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else if (role === "admin") {
+            analyticsTitle = `<i class="fa fa-chart-pie text-primary me-2"></i>Financial & User Acquisition Reports`;
+            analyticsHtml = `
+              <div class="row g-4">
+                <div class="col-md-8">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead><tr><th>Payment ID</th><th>User Account</th><th>Plan Enrolled</th><th>Amount</th><th>Timestamp</th></tr></thead>
+                      <tbody>
+                        <tr><td>#P9881</td><td>alice@student.com</td><td>Pro Yearly Pack</td><td>$199.00</td><td>Today at 1:45 PM</td></tr>
+                        <tr><td>#P9880</td><td>bob@student.com</td><td>Standard Monthly</td><td>$19.00</td><td>Today at 10:15 AM</td></tr>
+                        <tr><td>#P9879</td><td>student@elearning.com</td><td>Pro Yearly Pack</td><td>$199.00</td><td>Yesterday</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="border p-4 rounded bg-white">
+                    <h6 class="border-bottom pb-2 mb-3">Monthly Targets</h6>
+                    <p class="small text-muted mb-2">New signups: <strong>120 / 200</strong></p>
+                    <div class="progress mb-3" style="height: 10px;"><div class="progress-bar bg-success" style="width: 60%;"></div></div>
+                    <p class="small text-muted mb-2">Target Revenue: <strong>$24,530 / $30,000</strong></p>
+                    <div class="progress" style="height: 10px;"><div class="progress-bar bg-warning" style="width: 81%;"></div></div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+          $("#analytics-earnings-title").html(analyticsTitle);
+          $("#analytics-earnings-content").html(analyticsHtml);
+
+          // ======================= 6. CERTIFICATES PANEL =======================
+          var certificatesHtml = "";
+          if (role === "student") {
+            certificatesHtml = `
+              <div class="row g-4">
+                <div class="col-md-7">
+                  <div class="border p-4 rounded bg-white mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div>
+                        <h6 class="mb-1 fw-bold">Python Programming BootCamp Certificate</h6>
+                        <small class="text-muted">Issued on: July 10, 2026 | ID: #CERT-PY-88901</small>
+                      </div>
+                      <a href="404.html" class="btn btn-sm btn-primary"><i class="fa fa-download me-2"></i>Download PDF</a>
+                    </div>
+                  </div>
+                  <div class="border p-4 rounded bg-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div>
+                        <h6 class="mb-1 fw-bold">Web Design basics course certificate</h6>
+                        <small class="text-muted">Pending: complete 2 more modules to unlock.</small>
+                      </div>
+                      <button class="btn btn-sm btn-secondary" disabled>Locked</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="border p-4 rounded bg-light">
+                    <h6 class="border-bottom pb-2 mb-3"><i class="fa fa-share-alt text-primary me-2"></i>Share Your Credentials</h6>
+                    <p class="text-muted small">Showcase your global achievements and get noticed by recruiters on LinkedIn!</p>
+                    <a href="404.html" class="btn btn-sm btn-outline-primary"><i class="fab fa-linkedin me-2"></i>Share on LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else {
+            certificatesHtml = `
+              <div class="row g-4">
+                <div class="col-md-8">
+                  <h6 class="mb-3">Recent Certificate Requests & Issuances</h6>
+                  <div class="table-responsive">
+                    <table class="table align-middle">
+                      <thead><tr><th>Student Email</th><th>Course Completed</th><th>Status</th></tr></thead>
+                      <tbody>
+                        <tr><td>student@elearning.com</td><td>Python Bootcamp 2026</td><td><span class="badge bg-success">Issued</span></td></tr>
+                        <tr><td>alice@student.com</td><td>HTML & CSS Basics</td><td><span class="badge bg-warning text-dark">Processing</span></td></tr>
+                        <tr><td>bob@student.com</td><td>Advanced JavaScript</td><td><span class="badge bg-success">Issued</span></td></tr>
+                        <tr><td>charlie@student.com</td><td>Figma UI/UX Essentials</td><td><span class="badge bg-success">Issued</span></td></tr>
+                        <tr><td>dave@student.com</td><td>HTML & CSS Basics</td><td><span class="badge bg-success">Issued</span></td></tr>
+                        <tr><td>lisa@student.com</td><td>Python Bootcamp 2026</td><td><span class="badge bg-warning text-dark">Processing</span></td></tr>
+                        <tr><td>sophia@student.com</td><td>Advanced JavaScript</td><td><span class="badge bg-success">Issued</span></td></tr>
+                        <tr><td>rohan@student.com</td><td>Figma UI/UX Essentials</td><td><span class="badge bg-success">Issued</span></td></tr>
+                        <tr><td>michael@student.com</td><td>HTML & CSS Basics</td><td><span class="badge bg-success">Issued</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="border p-4 rounded bg-white mb-4">
+                    <h6 class="border-bottom pb-2 mb-3">Verification Details</h6>
+                    <p class="text-muted small mb-0">Platform certificates are verified automatically on secure blockchain networks for maximum corporate credibility.</p>
+                  </div>
+                  
+                  <div class="border p-4 rounded bg-light">
+                    <h6 class="border-bottom pb-2 mb-3">Certificate Template Settings</h6>
+                    <p class="text-muted small">All templates use PDF 2.0 signatures featuring your encrypted instructor keys.</p>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+          $("#certificates-content").html(certificatesHtml);
+
+          // ======================= 7. ANNOUNCEMENTS PANEL =======================
+          var announcementsHtml = "";
+          announcements.forEach(function (a) {
+            announcementsHtml += `
+              <div class="border p-4 rounded bg-white mb-3 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="mb-0 fw-bold">${a.title}</h6>
+                  <span class="text-muted small"><i class="fa fa-calendar me-1"></i>${a.date}</span>
+                </div>
+                <p class="text-muted small mb-2">${a.msg}</p>
+                <div class="d-flex align-items-center">
+                  <span class="badge bg-light text-dark rounded-pill py-2 px-3 small">Published by: ${a.by}</span>
+                </div>
+              </div>
+            `;
+          });
+          $("#announcements-content").html(announcementsHtml);
+
+          // ======================= 8. HELP & SUPPORT PANEL =======================
+          var supportHtml = "";
+          if (role === "admin") {
+            supportHtml = `
+              <h6 class="mb-3">Active Support Tickets Queue</h6>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead><tr><th>Creator</th><th>Issue Subject</th><th>Message</th><th>Status</th><th>Action</th></tr></thead>
+                  <tbody id="admin-tickets-table"></tbody>
+                </table>
+              </div>
+            `;
+          } else {
+            supportHtml = `
+              <div class="row g-4">
+                <div class="col-md-5">
+                  <h6 class="mb-3">Submit a Support Ticket</h6>
+                  <form id="new-ticket-form">
+                    <div class="mb-3">
+                      <label class="form-label">Subject</label>
+                      <input type="text" class="form-control" id="ticket-subject" placeholder="What's the issue?" required>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Description</label>
+                      <textarea class="form-control" rows="3" id="ticket-msg" placeholder="Detail your problem here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Ticket</button>
+                  </form>
+                </div>
+                <div class="col-md-7">
+                  <h6 class="mb-3">My Support History</h6>
+                  <ul class="list-group" id="user-tickets-list"></ul>
+                </div>
+              </div>
+            `;
+          }
+          $("#help-support-content").html(supportHtml);
+          loadTickets();
+
+          function loadTickets() {
+            var activeTickets =
+              JSON.parse(localStorage.getItem("supportTickets")) || [];
+            if (role === "admin") {
+              var tableRows = "";
+              activeTickets.forEach(function (t, idx) {
+                tableRows += `
+                  <tr>
+                    <td>${t.user}</td>
+                    <td><strong>${t.subject}</strong></td>
+                    <td class="small text-muted">${t.msg}</td>
+                    <td><span class="badge ${t.status === "Open" ? "bg-warning" : "bg-secondary"}">${t.status}</span></td>
+                    <td>
+                      ${t.status === "Open" ? `<button class="btn btn-sm btn-outline-success resolve-ticket-btn" data-index="${idx}">Resolve</button>` : `<span class="text-muted small">No action</span>`}
+                    </td>
+                  </tr>
+                `;
+              });
+              $("#admin-tickets-table").html(tableRows);
+            } else {
+              var listHtml = "";
+              var userTickets = activeTickets.filter(
+                (t) => t.user === currentUser.email,
+              );
+              userTickets.forEach(function (t) {
+                listHtml += `
+                  <li class="list-group-item mb-2 border rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <h6 class="mb-1 fw-bold">${t.subject}</h6>
+                      <span class="badge ${t.status === "Open" ? "bg-warning" : "bg-secondary"}">${t.status}</span>
+                    </div>
+                    <p class="text-muted small mb-0">${t.msg}</p>
+                  </li>
+                `;
+              });
+              if (userTickets.length === 0) {
+                listHtml = `<p class="text-muted small">You haven't submitted any support tickets yet.</p>`;
+              }
+              $("#user-tickets-list").html(listHtml);
+            }
+          }
+
+          // Handle Resolving Ticket
+          $(document)
+            .off("click", ".resolve-ticket-btn")
+            .on("click", ".resolve-ticket-btn", function () {
+              var idx = $(this).data("index");
+              var activeTickets =
+                JSON.parse(localStorage.getItem("supportTickets")) || [];
+              activeTickets[idx].status = "Closed";
+              localStorage.setItem(
+                "supportTickets",
+                JSON.stringify(activeTickets),
+              );
+              loadTickets();
+              renderDashboardData(); // Refresh Overview Count too
+            });
+
+          // Handle Create Ticket
+          $("#new-ticket-form").on("submit", function (e) {
+            e.preventDefault();
+            var subject = $("#ticket-subject").val().trim();
+            var msg = $("#ticket-msg").val().trim();
+
+            var activeTickets =
+              JSON.parse(localStorage.getItem("supportTickets")) || [];
+            activeTickets.unshift({
+              subject: subject,
+              msg: msg,
+              status: "Open",
+              user: currentUser.email,
+            });
+            localStorage.setItem(
+              "supportTickets",
+              JSON.stringify(activeTickets),
+            );
+
+            alert(
+              "Support Ticket Created Successfully! We will respond to you shortly.",
+            );
+            $("#ticket-subject").val("");
+            $("#ticket-msg").val("");
+            loadTickets();
+          });
+
+          // ======================= 9. SETTINGS PANEL =======================
+          var settingsHtml = `
+            <form id="profile-settings-form" class="bg-light p-4 rounded">
+              <h6 class="mb-3 border-bottom pb-2">Profile Details</h6>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="profile-name" value="${currentUser.name}" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email Address (Read-only)</label>
+                  <input type="email" class="form-control" value="${currentUser.email}" readonly disabled>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label">New Password (Leave blank to keep current password)</label>
+                <input type="password" class="form-control" id="profile-new-password" placeholder="••••••••">
+              </div>
+
+              <h6 class="mb-3 border-bottom pb-2">Platform Preferences</h6>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="notify-email" checked>
+                <label class="form-check-label text-muted" for="notify-email">Enable Email Notifications for Announcements</label>
+              </div>
+              <div class="mb-4 form-check">
+                <input type="checkbox" class="form-check-input" id="enable-tfa">
+                <label class="form-check-label text-muted" for="enable-tfa">Enforce Two-Factor Authenticator (TFA)</label>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Update Profile & Settings</button>
+            </form>
+          `;
+          $("#settings-content").html(settingsHtml);
+
+          $("#profile-settings-form").on("submit", function (e) {
+            e.preventDefault();
+            window.location.href = "404.html";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

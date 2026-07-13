@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Course Player - eLEARNING</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link href="css/all.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Nunito", sans-serif;
+      }
+
+      body {
+        background-color: #f8f9fa;
+        font-family: "Heebo", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .main-content-player {
+        flex-grow: 1;
+      }
+      .player-container {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .syllabus-sidebar {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+      .lecture-item {
+        padding: 12px 15px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .lecture-item:hover,
+      .lecture-item.active {
+        background-color: #f0fbfc;
+        border-left: 4px solid #06bbcc;
+      }
+      .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        background-color: #000;
+        border-radius: 12px 12px 0 0;
+      }
+      .video-wrapper video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar Start -->
+    <nav
+      class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0"
+    >
+      <a
+        href="dashboard.html"
+        class="navbar-brand d-flex align-items-center px-4 px-lg-5"
+      >
+        <img
+          src="img/logo-stackly.webp"
+          alt="Logo"
+          style="height: 40px; margin-right: 10px"
+        />
+      </a>
+      <div class="ms-auto pe-4 d-flex align-items-center">
+        <a href="dashboard.html" class="btn btn-outline-primary btn-sm me-3"
+          ><i class="fa fa-arrow-left me-1"></i> Back to Dashboard</a
+        >
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Main Container -->
+    <div class="container-fluid py-4 main-content-player">
+      <div class="row g-4">
+        <!-- Video Screen Column -->
+        <div class="col-lg-8">
+          <div class="player-container bg-white mb-4">
+            <div class="video-wrapper">
+              <!-- Mock Video Player -->
+              <video id="course-video" controls poster="img/course-1.webp">
+                <source
+                  src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+            <div class="p-4">
+              <h3 id="current-lecture-title">1. Welcome to the Course</h3>
+              <p class="text-muted small">
+                Course: Web Design for Beginners | Section 1: Course
+                Introduction
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom Tabs -->
+          <div class="bg-white p-4 rounded shadow-sm">
+            <ul class="nav nav-tabs" id="playerTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  id="about-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#about"
+                  type="button"
+                  role="tab"
+                  aria-controls="about"
+                  aria-selected="true"
+                >
+                  About Lecture
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="notes-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#notes"
+                  type="button"
+                  role="tab"
+                  aria-controls="notes"
+                  aria-selected="false"
+                >
+                  Lecture Notes
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  id="resources-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#resources"
+                  type="button"
+                  role="tab"
+                  aria-controls="resources"
+                  aria-selected="false"
+                >
+                  Resources
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content p-3" id="playerTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="about"
+                role="tabpanel"
+                aria-labelledby="about-tab"
+              >
+                <h5>About this Lesson</h5>
+                <p class="text-muted">
+                  In this lesson, we will cover the roadmap of the Web Design
+                  course, learning tools, syllabus structure, and setting up the
+                  developer workspace environments.
+                </p>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="notes"
+                role="tabpanel"
+                aria-labelledby="notes-tab"
+              >
+                <h5>My Study Notes</h5>
+                <textarea
+                  class="form-control mb-3"
+                  rows="4"
+                  placeholder="Write your notes here for this lecture... (Saved automatically in your browser)"
+                ></textarea>
+                <button
+                  class="btn btn-primary btn-sm"
+                  onclick="alert('Notes Saved!')"
+                >
+                  Save Notes
+                </button>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="resources"
+                role="tabpanel"
+                aria-labelledby="resources-tab"
+              >
+                <h5>Downloadable Resources</h5>
+                <ul class="list-unstyled">
+                  <li
+                    class="py-2 border-bottom d-flex justify-content-between align-items-center"
+                  >
+                    <span
+                      ><i class="fa fa-file-pdf text-danger me-2"></i
+                      >Syllabus-Roadmap.pdf</span
+                    >
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      onclick="alert('Downloading Resources...')"
+                    >
+                      Download
+                    </button>
+                  </li>
+                  <li
+                    class="py-2 d-flex justify-content-between align-items-center"
+                  >
+                    <span
+                      ><i class="fa fa-file-code text-info me-2"></i
+                      >Setup-Guide-VSCode.txt</span
+                    >
+                    <button
+                      class="btn btn-sm btn-outline-primary"
+                      onclick="alert('Downloading Resources...')"
+                    >
+                      Download
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Syllabus Navigator Sidebar -->
+        <div class="col-lg-4">
+          <div class="syllabus-sidebar p-3">
+            <h5 class="mb-3">
+              <i class="fa fa-list text-primary me-2"></i>Course Syllabus
+            </h5>
+
+            <div class="accordion" id="syllabusAccordionPlayer">
+              <!-- Section 1 -->
+              <div class="accordion-item border-0 mb-2 shadow-sm">
+                <h2 class="accordion-header" id="headingSectOne">
+                  <button
+                    class="accordion-button bg-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#sectOne"
+                    aria-expanded="true"
+                    aria-controls="sectOne"
+                  >
+                    Section 1: Introduction
+                  </button>
+                </h2>
+                <div
+                  id="sectOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingSectOne"
+                  data-bs-parent="#syllabusAccordionPlayer"
+                >
+                  <div class="accordion-body p-0">
+                    <div
+                      class="lecture-item border-bottom active"
+                      data-title="1. Welcome to the Course"
+                      data-video="https://www.w3schools.com/html/mov_bbb.mp4"
+                    >
+                      <input
+                        type="checkbox"
+                        class="form-check-input me-2"
+                        checked
+                      />
+                      <span>1. Welcome to the Course</span>
+                    </div>
+                    <div
+                      class="lecture-item border-bottom"
+                      data-title="2. Learning Path Guidelines"
+                      data-video="https://www.w3schools.com/html/movie.mp4"
+                    >
+                      <input type="checkbox" class="form-check-input me-2" />
+                      <span>2. Learning Path Guidelines</span>
+                    </div>
+                    <div
+                      class="lecture-item"
+                      data-title="3. Setting Up Your Editor (VS Code)"
+                      data-video="https://www.w3schools.com/html/mov_bbb.mp4"
+                    >
+                      <input type="checkbox" class="form-check-input me-2" />
+                      <span>3. Setting Up Your Editor</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 2 -->
+              <div class="accordion-item border-0 mb-2 shadow-sm">
+                <h2 class="accordion-header" id="headingSectTwo">
+                  <button
+                    class="accordion-button collapsed bg-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#sectTwo"
+                    aria-expanded="false"
+                    aria-controls="sectTwo"
+                  >
+                    Section 2: HTML5 Essentials
+                  </button>
+                </h2>
+                <div
+                  id="sectTwo"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingSectTwo"
+                  data-bs-parent="#syllabusAccordionPlayer"
+                >
+                  <div class="accordion-body p-0">
+                    <div
+                      class="lecture-item border-bottom"
+                      data-title="4. Basic HTML Document Structure"
+                      data-video="https://www.w3schools.com/html/movie.mp4"
+                    >
+                      <input type="checkbox" class="form-check-input me-2" />
+                      <span>4. Document Structure</span>
+                    </div>
+                    <div
+                      class="lecture-item border-bottom"
+                      data-title="5. Headings, Paragraphs & Formatting"
+                      data-video="https://www.w3schools.com/html/mov_bbb.mp4"
+                    >
+                      <input type="checkbox" class="form-check-input me-2" />
+                      <span>5. Text Formatting Elements</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS Files -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Authenticate student session
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (!currentUser) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Lecture switcher event handler
+        $(".lecture-item").on("click", function (e) {
+          if (e.target.type === "checkbox") return; // avoid toggle conflict
+
+          $(".lecture-item").removeClass("active");
+          $(this).addClass("active");
+
+          var title = $(this).data("title");
+          var videoSrc = $(this).data("video");
+
+          $("#current-lecture-title").text(title);
+
+          // Switch Video Player Source
+          var videoPlayer = $("#course-video")[0];
+          videoPlayer.src = videoSrc;
+          videoPlayer.load();
+          videoPlayer.play();
+        });
+      });
+    </script>
+  </body>
+</html>
