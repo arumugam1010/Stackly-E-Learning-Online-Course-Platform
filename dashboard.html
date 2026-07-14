@@ -133,6 +133,7 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
       background-color: #ffffff;
       transition: transform 0.3s;
+      height: 100%;
     }
 
     .metric-card:hover {
@@ -447,6 +448,12 @@
       width: 100% !important;
       -webkit-overflow-scrolling: touch;
     }
+
+    .card-img-top {
+      height: 180px !important;
+      object-fit: cover !important;
+      width: 100% !important;
+    }
   </style>
 </head>
 
@@ -684,38 +691,62 @@
       $("#user-display-name").text(currentUser.name);
       $("#welcome-message, #welcome-message-mobile").text("Welcome Back, " + currentUser.name + "!");
 
+      // Render Sidebar Links dynamically based on Role
+      var sidebarHtml = "";
+      if (role === "student") {
+        sidebarHtml = `
+          <li class="active"><a data-target="overview"><i class="fa fa-home"></i>Overview</a></li>
+          <li><a data-target="my-courses"><i class="fa fa-book-open"></i>My Courses</a></li>
+          <li><a data-target="course-manager"><i class="fa fa-folder-open"></i>Browse Catalog</a></li>
+          <li><a data-target="analytics-earnings"><i class="fa fa-chart-bar"></i>Learning Logs</a></li>
+          <li><a data-target="certificates"><i class="fa fa-award"></i>Certificates</a></li>
+          <li><a data-target="announcements"><i class="fa fa-bell"></i>Announcements</a></li>
+          <li><a data-target="help-support"><i class="fa fa-question-circle"></i>Help & Support</a></li>
+          <li><a data-target="settings"><i class="fa fa-cog"></i>Settings</a></li>
+        `;
+      } else if (role === "instructor") {
+        sidebarHtml = `
+          <li class="active"><a data-target="overview"><i class="fa fa-home"></i>Overview</a></li>
+          <li><a data-target="course-manager"><i class="fa fa-folder-open"></i>Course Manager</a></li>
+          <li><a data-target="analytics-earnings"><i class="fa fa-chart-bar"></i>Earnings & Analytics</a></li>
+          <li><a data-target="announcements"><i class="fa fa-bell"></i>Announcements</a></li>
+          <li><a data-target="help-support"><i class="fa fa-question-circle"></i>Help & Support</a></li>
+          <li><a data-target="settings"><i class="fa fa-cog"></i>Settings</a></li>
+        `;
+      } else if (role === "admin") {
+        sidebarHtml = `
+          <li class="active"><a data-target="overview"><i class="fa fa-home"></i>Overview</a></li>
+          <li><a data-target="course-manager"><i class="fa fa-folder-open"></i>Course Approvals</a></li>
+          <li><a data-target="users-students"><i class="fa fa-users"></i>Users & Students</a></li>
+          <li><a data-target="analytics-earnings"><i class="fa fa-chart-bar"></i>Financial Reports</a></li>
+          <li><a data-target="certificates"><i class="fa fa-award"></i>Certificate Requests</a></li>
+          <li><a data-target="announcements"><i class="fa fa-bell"></i>Announcements</a></li>
+          <li><a data-target="help-support"><i class="fa fa-question-circle"></i>Support Tickets</a></li>
+          <li><a data-target="settings"><i class="fa fa-cog"></i>Settings</a></li>
+        `;
+      }
+      $("#sidebar-links").html(sidebarHtml);
+
       // Populate System Announcements (localStorage database)
       var announcements = JSON.parse(
         localStorage.getItem("announcements"),
       ) || [
           {
-            title: "Live Python Q&A Scheduled",
-            msg: "Join the live Q&A session with Python experts on Friday at 5:00 PM.",
-            date: "Today at 10:00 AM",
-            by: "Admin",
+            title: "Platform Maintenance Window",
+            desc: "On Sunday July 19th, 2AM-4AM IST for upgrading the learning analytics engine. Services might be offline.",
+            date: "July 12, 2026",
+            author: "System Admin",
           },
           {
-            title: "System Maintenance",
-            msg: "The platform will undergo maintenance this Sunday for 2 hours.",
-            date: "Yesterday",
-            by: "System",
-          },
-          {
-            title: "Global Coding Hackathon 2026",
-            msg: "Submit your final web development project by July 28 to win cash rewards and certificates.",
-            date: "3 days ago",
-            by: "Hackathon Organizer",
-          },
-          {
-            title: "Figma UI Masterclass Published",
-            msg: "A new design course is available today. Head to course manager to check it out.",
-            date: "5 days ago",
-            by: "Admin",
+            title: "Introducing AI Mentorship Beta",
+            desc: "Now premium enrolled students can resolve coding tasks with our automated AI assistant on the learn panels.",
+            date: "July 08, 2026",
+            author: "Product Team",
           },
         ];
       localStorage.setItem("announcements", JSON.stringify(announcements));
 
-      // Populate Help Tickets (localStorage database)
+      // Populate Support Tickets (localStorage database)
       var supportTickets = JSON.parse(
         localStorage.getItem("supportTickets"),
       ) || [
@@ -737,8 +768,8 @@
       // Initialize Dynamic Content Views
       renderDashboardData();
 
-      // JQuery SPA Sidebar Panel Switcher
-      $("#sidebar-links a, [data-target-profile]").on("click", function (e) {
+      // JQuery SPA Sidebar Panel Switcher (using event delegation for dynamic sidebar elements)
+      $(document).on("click", "#sidebar-links a, [data-target-profile]", function (e) {
         e.preventDefault();
         var targetTab =
           $(this).data("target") || $(this).data("target-profile");
@@ -1078,10 +1109,10 @@
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/course-1.webp" class="card-img-top" alt="Web Design">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Web Design for Beginners</h5>
                       <p class="card-text text-muted small">Master HTML, CSS, layouts, and responsive designs.</p>
-                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar" style="width: 75%;"></div></div>
+                      <div class="progress mb-3 mt-auto" style="height: 8px;"><div class="progress-bar" style="width: 75%;"></div></div>
                       <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
                     </div>
                   </div>
@@ -1089,10 +1120,10 @@
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/course-2.webp" class="card-img-top" alt="React">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Mastering React & Redux</h5>
                       <p class="card-text text-muted small">Build modern SPA frontend interfaces dynamically.</p>
-                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 30%;"></div></div>
+                      <div class="progress mb-3 mt-auto" style="height: 8px;"><div class="progress-bar bg-warning" style="width: 30%;"></div></div>
                       <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
                     </div>
                   </div>
@@ -1100,21 +1131,21 @@
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/course-3.webp" class="card-img-top" alt="Python">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Python Bootcamp 2026</h5>
                       <p class="card-text text-muted small">Learn backend engineering, automation, and programming.</p>
-                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-success" style="width: 100%;"></div></div>
-                      <button class="btn btn-outline-success w-100" onclick="$('[data-target=\'certificates\']').click()"><i class="fa fa-award me-1"></i>View Certificate</button>
+                      <div class="progress mb-3 mt-auto" style="height: 8px;"><div class="progress-bar bg-success" style="width: 100%;"></div></div>
+                      <button class="btn btn-outline-success w-100" onclick="window.location.href='404.html'"><i class="fa fa-award me-1"></i>View Certificate</button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/cat-1.webp" class="card-img-top" alt="UI Design">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Figma UI/UX Essentials</h5>
                       <p class="card-text text-muted small">Design beautiful user interfaces and interactive wireframes.</p>
-                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-info" style="width: 45%;"></div></div>
+                      <div class="progress mb-3 mt-auto" style="height: 8px;"><div class="progress-bar bg-info" style="width: 45%;"></div></div>
                       <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
                     </div>
                   </div>
@@ -1122,10 +1153,10 @@
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/cat-2.webp" class="card-img-top" alt="JavaScript">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Advanced JS REST APIs</h5>
                       <p class="card-text text-muted small">Master Node.js, Express, databases, and restful architecture.</p>
-                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-danger" style="width: 90%;"></div></div>
+                      <div class="progress mb-3 mt-auto" style="height: 8px;"><div class="progress-bar bg-danger" style="width: 90%;"></div></div>
                       <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
                     </div>
                   </div>
@@ -1133,10 +1164,10 @@
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/cat-4.webp" class="card-img-top" alt="SEO">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">SEO Optimization Blueprint</h5>
                       <p class="card-text text-muted small">Index higher on Google search engine result pages.</p>
-                      <div class="progress mb-3" style="height: 8px;"><div class="progress-bar bg-primary" style="width: 15%;"></div></div>
+                      <div class="progress mb-3 mt-auto" style="height: 8px;"><div class="progress-bar bg-primary" style="width: 15%;"></div></div>
                       <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Resume learning</button>
                     </div>
                   </div>
@@ -1229,60 +1260,60 @@
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/cat-1.webp" class="card-img-top" alt="Photoshop">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Adobe Photoshop Masterclass</h5>
                       <p class="card-text text-muted small">Learn graphic design, photo manipulation, and editing.</p>
-                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                      <button class="btn btn-primary w-100 mt-auto" onclick="window.location.href='404.html'">Enroll Now</button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/cat-3.webp" class="card-img-top" alt="Digital Marketing">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Digital Marketing Bootcamp</h5>
                       <p class="card-text text-muted small">Master SEO, social media marketing, and growth hacking.</p>
-                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                      <button class="btn btn-primary w-100 mt-auto" onclick="window.location.href='404.html'">Enroll Now</button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/cat-2.webp" class="card-img-top" alt="Java">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Java Programming for Experts</h5>
                       <p class="card-text text-muted small">Build advanced secure desktop and server applications.</p>
-                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                      <button class="btn btn-primary w-100 mt-auto" onclick="window.location.href='404.html'">Enroll Now</button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/cat-4.webp" class="card-img-top" alt="Illustrator">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Vector Illustration Guide</h5>
                       <p class="card-text text-muted small">Learn how to make professional logos, icons, and artwork.</p>
-                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                      <button class="btn btn-primary w-100 mt-auto" onclick="window.location.href='404.html'">Enroll Now</button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/about.webp" class="card-img-top" alt="AWS">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">AWS Cloud Architect Training</h5>
                       <p class="card-text text-muted small">Deploy scalable, secure services on Amazon Web Services.</p>
-                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                      <button class="btn btn-primary w-100 mt-auto" onclick="window.location.href='404.html'">Enroll Now</button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="card shadow-sm border-0 h-100">
                     <img src="img/course-3.webp" class="card-img-top" alt="Python Data Science">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                       <h5 class="card-title">Python for Data Analysis</h5>
                       <p class="card-text text-muted small">Manipulate datasets, build statistical models and dashboards.</p>
-                      <button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Enroll Now</button>
+                      <button class="btn btn-primary w-100 mt-auto" onclick="window.location.href='404.html'">Enroll Now</button>
                     </div>
                   </div>
                 </div>
@@ -1548,22 +1579,35 @@
               <div class="row g-4">
                 <div class="col-md-8">
                   <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover align-middle">
                       <thead><tr><th>Date</th><th>Module Session</th><th>Duration</th><th>Score</th></tr></thead>
                       <tbody>
                         <tr><td>Today</td><td>HTML & CSS Layout Grid</td><td>1.5 hrs</td><td>90% Quiz</td></tr>
                         <tr><td>Yesterday</td><td>Javascript Basics Arrays</td><td>2.0 hrs</td><td>85% Quiz</td></tr>
                         <tr><td>July 10, 2026</td><td>Introduction to programming</td><td>4.5 hrs</td><td>100% Test</td></tr>
                         <tr><td>July 08, 2026</td><td>UX principles timeline</td><td>1.2 hrs</td><td>80% Quiz</td></tr>
+                        <tr><td>July 06, 2026</td><td>Flexbox layout alignment</td><td>1.8 hrs</td><td>88% Quiz</td></tr>
+                        <tr><td>July 03, 2026</td><td>Variables and operations</td><td>3.0 hrs</td><td>95% Test</td></tr>
+                        <tr><td>July 01, 2026</td><td>Figma components and spacing</td><td>2.5 hrs</td><td>90% Quiz</td></tr>
+                        <tr><td>June 28, 2026</td><td>SEO keyword analysis basics</td><td>1.0 hrs</td><td>100% Test</td></tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="border p-4 rounded bg-white">
+                  <div class="border p-4 rounded bg-white mb-4 shadow-sm">
                     <h6 class="border-bottom pb-2 mb-3">Weekly Goals Progress</h6>
                     <div class="progress mb-2" style="height: 20px;"><div class="progress-bar" style="width: 80%;">80% achieved</div></div>
                     <small class="text-muted">Target: 10 hours/week. Current: 8 hours spent.</small>
+                  </div>
+                  
+                  <div class="border p-4 rounded bg-white shadow-sm">
+                    <h6 class="border-bottom pb-2 mb-3">Learning Streaks & Stats</h6>
+                    <ul class="list-unstyled mb-0">
+                      <li class="mb-2 d-flex justify-content-between"><span>Current Streak:</span><strong>5 Days 🔥</strong></li>
+                      <li class="mb-2 d-flex justify-content-between"><span>Total Time Spent:</span><strong>18.5 Hours ⏱️</strong></li>
+                      <li class="d-flex justify-content-between"><span>Quizzes Completed:</span><strong>7 📝</strong></li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -1645,8 +1689,8 @@
           certificatesHtml = `
               <div class="row g-4">
                 <div class="col-md-7">
-                  <div class="border p-4 rounded bg-white mb-4">
-                    <div class="d-flex align-items-center justify-content-between">
+                  <div class="border p-4 rounded bg-white mb-4 shadow-sm">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                       <div>
                         <h6 class="mb-1 fw-bold">Python Programming BootCamp Certificate</h6>
                         <small class="text-muted">Issued on: July 10, 2026 | ID: #CERT-PY-88901</small>
@@ -1654,8 +1698,17 @@
                       <a href="404.html" class="btn btn-sm btn-primary"><i class="fa fa-download me-2"></i>Download PDF</a>
                     </div>
                   </div>
-                  <div class="border p-4 rounded bg-white">
-                    <div class="d-flex align-items-center justify-content-between">
+                  <div class="border p-4 rounded bg-white mb-4 shadow-sm">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                      <div>
+                        <h6 class="mb-1 fw-bold">Advanced JavaScript Course Certificate</h6>
+                        <small class="text-muted">Issued on: July 14, 2026 | ID: #CERT-JS-90182</small>
+                      </div>
+                      <a href="404.html" class="btn btn-sm btn-primary"><i class="fa fa-download me-2"></i>Download PDF</a>
+                    </div>
+                  </div>
+                  <div class="border p-4 rounded bg-white mb-4 shadow-sm">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                       <div>
                         <h6 class="mb-1 fw-bold">Web Design basics course certificate</h6>
                         <small class="text-muted">Pending: complete 2 more modules to unlock.</small>
@@ -1663,12 +1716,30 @@
                       <button class="btn btn-sm btn-secondary" disabled>Locked</button>
                     </div>
                   </div>
+                  <div class="border p-4 rounded bg-white shadow-sm">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                      <div>
+                        <h6 class="mb-1 fw-bold">Figma UI/UX Essentials Certificate</h6>
+                        <small class="text-muted">Pending: complete 5 more modules to unlock.</small>
+                      </div>
+                      <button class="btn btn-sm btn-secondary" disabled>Locked</button>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-5">
-                  <div class="border p-4 rounded bg-light">
+                  <div class="border p-4 rounded bg-light mb-4 shadow-sm">
                     <h6 class="border-bottom pb-2 mb-3"><i class="fa fa-share-alt text-primary me-2"></i>Share Your Credentials</h6>
                     <p class="text-muted small">Showcase your global achievements and get noticed by recruiters on LinkedIn!</p>
                     <a href="404.html" class="btn btn-sm btn-outline-primary"><i class="fab fa-linkedin me-2"></i>Share on LinkedIn</a>
+                  </div>
+                  
+                  <div class="border p-4 rounded bg-white shadow-sm">
+                    <h6 class="border-bottom pb-2 mb-3"><i class="fa fa-check-circle text-success me-2"></i>Verify Certificate</h6>
+                    <p class="text-muted small">Enter the Certificate ID to verify credentials validity on our platform:</p>
+                    <div class="input-group">
+                      <input type="text" class="form-control form-control-sm" placeholder="e.g. #CERT-PY-88901">
+                      <button class="btn btn-sm btn-primary" type="button" onclick="window.location.href='404.html'">Verify</button>
+                    </div>
                   </div>
                 </div>
               </div>
