@@ -28,8 +28,8 @@
         --white: #f9f9f9;
         --gray: #a0a5a8;
         --black: #181818;
-        --primary-theme: #06bbcc;
-        --dark-theme: #181d38;
+        --primary-theme: #3b3db8;
+        --dark-theme: #0f172a;
         --transition: 1.25s;
       }
       body {
@@ -707,6 +707,11 @@
           $("#remember-me").prop("checked", true);
         }
 
+        $("#signup-name").on("input", function () {
+          var val = $(this).val();
+          $(this).val(val.replace(/[0-9]/g, ""));
+        });
+
         // Auth validations & LocalStorage
         $("#signup-form").on("submit", function (e) {
           e.preventDefault();
@@ -720,6 +725,13 @@
           var role = $("#signup-role").val();
 
           // Validations
+          if (/\d/.test(name)) {
+            $("#signup-alert")
+              .text("Name should not contain numbers.")
+              .removeClass("d-none");
+            return;
+          }
+
           var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(email)) {
             $("#signup-alert")

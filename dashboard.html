@@ -35,10 +35,14 @@
 
     body {
       font-family: "Heebo", sans-serif;
-      background-color: #f0fbfc;
+      background-color: var(--light);
+      background-image: none !important;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+    }
+    body::before {
+      display: none !important;
     }
 
     .wrapper {
@@ -50,7 +54,7 @@
     #sidebar {
       min-width: 250px;
       max-width: 250px;
-      background: #181d38;
+      background: var(--dark);
       color: #fff;
       transition: all 0.3s;
       height: 100vh;
@@ -63,7 +67,7 @@
 
     #sidebar .sidebar-header {
       padding: 20px 20px 10px 20px;
-      background: #181d38;
+      background: var(--dark);
       text-align: center;
       position: relative;
     }
@@ -89,7 +93,7 @@
     #sidebar ul li a:hover,
     #sidebar ul li.active>a {
       color: #fff;
-      background: #06bbcc;
+      background: var(--primary);
     }
 
     #sidebar ul li a i {
@@ -103,7 +107,7 @@
       padding: 0;
       min-height: 100vh;
       transition: all 0.3s;
-      background-color: #f0fbfc;
+      background-color: var(--light);
       display: flex;
       flex-direction: column;
     }
@@ -256,8 +260,8 @@
       }
 
       .navbar-dashboard {
-        padding: 4px 10px !important;
-        margin-bottom: 8px !important;
+        padding: 12px 15px !important;
+        margin-bottom: 15px !important;
       }
 
       .navbar-dashboard h4 {
@@ -474,7 +478,7 @@
       </div>
 
       <div class="sidebar-user-profile text-center py-3 border-bottom mb-2" style="border-color: rgba(255, 255, 255, 0.1) !important;">
-        <h6 class="m-0 fw-bold text-capitalize" id="sidebar-user-role" style="font-size: 15px; letter-spacing: 0.5px; color: #06bbcc !important;">Role : Loading...</h6>
+        <h6 class="m-0 fw-bold text-capitalize" id="sidebar-user-role" style="font-size: 15px; letter-spacing: 0.5px; color: #3b3db8 !important;">Role : Loading...</h6>
       </div>
 
       <ul class="list-unstyled components" id="sidebar-links">
@@ -521,22 +525,21 @@
           <a href="dashboard.html" class="navbar-brand d-flex d-md-none align-items-center p-0 m-0">
             <img src="img/logo-stackly.webp" alt="Logo" style="height: 32px;" />
           </a>
-          <h4 class="m-0 text-start flex-grow-1 px-0 d-none d-sm-block" id="welcome-message" style="font-size: 16px;">
+          <h4 class="m-0 text-start flex-grow-1 px-0 d-none d-md-block" id="welcome-message" style="font-size: 16px;">
             Welcome Back!</h4>
           <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
             <i class="fa fa-bars"></i>
           </button>
         </div>
-        <!-- Show Welcome message on extra small screens below the header row -->
-        <div class="w-100 text-start d-block d-sm-none"
-          style="margin-top: -3px !important; margin-bottom: 2px !important;">
-          <h5 class="m-0 fw-bold" id="welcome-message-mobile"
-            style="font-size: 12px; margin: 0 !important; line-height: 1.1; padding: 0 !important;">Welcome Back!</h5>
-        </div>
       </nav>
 
       <!-- Main Dashboard View Container -->
       <div id="panel-container">
+        <!-- Show Welcome message on extra small screens inside the page content container -->
+        <div class="w-100 text-start d-block d-md-none mb-3">
+          <h5 class="m-0 fw-bold text-dark" id="welcome-message-mobile"
+            style="font-size: 16px; line-height: 1.2;">Welcome Back!</h5>
+        </div>
         <!-- 1. Overview Panel -->
         <div id="panel-overview" class="panel-content">
           <!-- Dynamic overview cards loaded via Javascript depending on Role -->
@@ -812,7 +815,7 @@
 
         if (role === "student") {
           metricsHtml = `
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -823,7 +826,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -834,7 +837,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -845,7 +848,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -920,7 +923,7 @@
             `;
         } else if (role === "instructor") {
           metricsHtml = `
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -931,7 +934,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -942,7 +945,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -953,7 +956,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -1017,7 +1020,7 @@
             `;
         } else if (role === "admin") {
           metricsHtml = `
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -1028,7 +1031,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -1039,7 +1042,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -1050,7 +1053,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -1952,8 +1955,18 @@
           `;
         $("#settings-content").html(settingsHtml);
 
+        $(document).off("input", "#profile-name").on("input", "#profile-name", function () {
+          var val = $(this).val();
+          $(this).val(val.replace(/[0-9]/g, ""));
+        });
+
         $("#profile-settings-form").on("submit", function (e) {
           e.preventDefault();
+          var name = $("#profile-name").val().trim();
+          if (/\d/.test(name)) {
+            alert("Name should not contain numbers.");
+            return;
+          }
           window.location.href = "404.html";
         });
       }
