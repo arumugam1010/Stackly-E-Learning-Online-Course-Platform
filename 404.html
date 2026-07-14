@@ -186,9 +186,14 @@
               We’re sorry, the page you have looked for does not exist in our
               website! Go back to our home page to resume learning.
             </p>
-            <a class="btn btn-primary rounded-pill py-3 px-5" href="index.html"
-              >Go Back To Home</a
-            >
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+              <a class="btn btn-primary rounded-pill py-3 px-5" href="index.html"
+                >Go Back To Home</a
+              >
+              <a class="btn btn-dark rounded-pill py-3 px-5 d-none" id="back-to-dashboard-btn" href="dashboard.html"
+                >Back To Dashboard</a
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -199,5 +204,13 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      $(document).ready(function() {
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (currentUser) {
+          $("#back-to-dashboard-btn").removeClass("d-none");
+        }
+      });
+    </script>
   </body>
 </html>

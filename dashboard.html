@@ -1,652 +1,693 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Dashboard - eLEARNING</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard - eLEARNING</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <!-- Icon Font Stylesheet -->
-    <link href="css/all.min.css" rel="stylesheet" />
-    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Icon Font Stylesheet -->
+  <link href="css/all.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-icons.css" rel="stylesheet" />
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet" />
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
 
-    <style>
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet" />
+
+  <style>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Nunito", sans-serif;
+    }
+
+    body {
+      font-family: "Heebo", sans-serif;
+      background-color: #f0fbfc;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .wrapper {
+      display: flex;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    #sidebar {
+      min-width: 250px;
+      max-width: 250px;
+      background: #181d38;
+      color: #fff;
+      transition: all 0.3s;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    #sidebar .sidebar-header {
+      padding: 20px 20px 10px 20px;
+      background: #181d38;
+      text-align: center;
+      position: relative;
+    }
+
+    #close-sidebar {
+      display: none;
+    }
+
+    #sidebar ul.components {
+      padding: 20px 0;
+    }
+
+    #sidebar ul li a {
+      padding: 12px 20px;
+      font-size: 1.05em;
+      display: block;
+      color: #a3a7be;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    #sidebar ul li a:hover,
+    #sidebar ul li.active>a {
+      color: #fff;
+      background: #06bbcc;
+    }
+
+    #sidebar ul li a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    #content {
+      width: 100%;
+      padding: 0;
+      min-height: 100vh;
+      transition: all 0.3s;
+      background-color: #f0fbfc;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 769px) {
+      #content {
+        padding-left: 250px !important;
+      }
+    }
+
+    #panel-container {
+      flex-grow: 1;
+      padding: 0 30px 30px 30px;
+    }
+
+    .navbar-dashboard {
+      background-color: #ffffff;
+      border-radius: 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      margin-bottom: 25px;
+      padding: 20px 30px !important;
+    }
+
+    .metric-card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      background-color: #ffffff;
+      transition: transform 0.3s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .table-container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      overflow-x: auto;
+    }
+
+    .panel-content {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Dashboard Responsive support for small viewports down to 150px with Hamburger Off-Canvas */
+    #sidebarCollapse {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .wrapper {
+        display: block !important;
+      }
+
+      #sidebar {
+        position: fixed !important;
+        top: 0;
+        left: -70%;
+        height: 100vh !important;
+        z-index: 1050 !important;
+        width: 70% !important;
+        min-width: 70% !important;
+        max-width: 70% !important;
+        transition: all 0.3s ease;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
+      }
+
+      #sidebar .sidebar-header {
+        padding: 15px 5px !important;
+      }
+
+      #sidebar .sidebar-header a {
+        padding: 5px !important;
+        display: block !important;
+        width: 100% !important;
+      }
+
+      #sidebar .sidebar-header a img {
+        max-width: 95% !important;
+        height: 45px !important;
+        display: inline-block !important;
+        object-fit: contain;
+      }
+
+      #sidebar.active {
+        left: 0 !important;
+      }
+
+      #sidebar.active~#content {
+        filter: blur(4px);
+        pointer-events: none;
+      }
+
+      body.sidebar-open,
+      html.sidebar-open,
+      body.sidebar-open .wrapper {
+        overflow: hidden !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+      }
+
+      #close-sidebar {
+        display: block !important;
+      }
+
+      #sidebar ul.components {
+        padding: 15px 0 !important;
+        display: block !important;
+      }
+
+      #sidebar ul li {
+        width: 100% !important;
+      }
+
+      #sidebar ul li a {
+        padding: 10px 15px !important;
+        font-size: 0.9em !important;
+        border-radius: 0 !important;
+      }
+
+      #sidebar ul li a i {
+        font-size: 1.1em !important;
+        margin-right: 8px !important;
+      }
+
+      #sidebarCollapse {
+        display: inline-block !important;
+        padding: 4px 8px !important;
+        font-size: 14px !important;
+      }
+
+      #panel-container {
+        padding: 15px !important;
+      }
+
+      .navbar-dashboard {
+        padding: 4px 10px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .navbar-dashboard h4 {
+        font-size: 15px !important;
+      }
+    }
+
+    @media (max-width: 280px) {
+      #sidebar .sidebar-header {
+        padding: 10px 3px !important;
+      }
+
+      #sidebar .sidebar-header a img {
+        max-width: 95% !important;
+        height: 38px !important;
+      }
+
+      #sidebar ul.components {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 5px !important;
+      }
+
+      #sidebar ul li a {
+        font-size: 10px !important;
+        padding: 5px 8px !important;
+      }
+
+      #sidebar ul li a i {
+        font-size: 11px !important;
+        margin-right: 5px !important;
+      }
+
+      #panel-container {
+        padding: 4px !important;
+      }
+
+      .navbar-dashboard {
+        padding: 2px 4px !important;
+        margin-bottom: 4px !important;
+      }
+
+      .navbar-dashboard h4 {
+        font-size: 11px !important;
+      }
+
+      #sidebarCollapse {
+        padding: 2px 5px !important;
+        font-size: 11px !important;
+      }
+
+      /* Grid, Font sizes & Card scaling for ultra narrow screens */
+      body,
+      p,
+      span,
+      a,
+      li,
+      td,
+      th,
+      label,
+      button,
       h1,
       h2,
       h3,
       h4,
       h5,
-      h6 {
-        font-family: "Nunito", sans-serif;
+      h6,
+      .h1,
+      .h2,
+      .h3,
+      .h4,
+      .h5,
+      .h6,
+      .fw-bold,
+      .card-title {
+        font-size: 11px !important;
       }
 
-      body {
-        font-family: "Heebo", sans-serif;
-        background-color: #f0fbfc;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
+      .row {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
       }
-      .wrapper {
-        display: flex;
-        width: 100%;
-        align-items: stretch;
+
+      .row>* {
+        padding-right: 2px !important;
+        padding-left: 2px !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
       }
-      #sidebar {
-        min-width: 250px;
-        max-width: 250px;
-        background: #181d38;
-        color: #fff;
-        transition: all 0.3s;
-        min-height: 100vh;
+
+      .table-container {
+        padding: 8px !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
       }
-      #sidebar .sidebar-header {
-        padding: 20px 20px 10px 20px;
-        background: #181d38;
-        text-align: center;
-        position: relative;
+
+      .table-responsive {
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        display: block !important;
+        -webkit-overflow-scrolling: touch;
       }
-      #close-sidebar {
-        display: none;
+
+      .metric-card {
+        padding: 6px !important;
       }
-      #sidebar ul.components {
-        padding: 20px 0;
+
+      .metric-card div[style*="width: 50px"] {
+        width: 30px !important;
+        height: 30px !important;
       }
+
+      .metric-card i.fa-2x {
+        font-size: 1.1rem !important;
+      }
+
+      .metric-card h3 {
+        font-size: 12px !important;
+        margin-top: 4px !important;
+      }
+
+      .p-4,
+      .p-5,
+      .p-3 {
+        padding: 8px !important;
+      }
+    }
+
+    @media (max-width: 180px) {
       #sidebar ul li a {
-        padding: 12px 20px;
-        font-size: 1.05em;
-        display: block;
-        color: #a3a7be;
-        text-decoration: none;
-        transition: all 0.3s;
-        cursor: pointer;
+        font-size: 9.5px !important;
+        padding: 4px 6px !important;
       }
-      #sidebar ul li a:hover,
-      #sidebar ul li.active > a {
-        color: #fff;
-        background: #06bbcc;
-      }
-      #sidebar ul li a i {
-        margin-right: 10px;
-        width: 20px;
-        text-align: center;
-      }
-      #content {
-        width: 100%;
-        padding: 0;
-        min-height: 100vh;
-        transition: all 0.3s;
-        background-color: #f0fbfc;
-        display: flex;
-        flex-direction: column;
-      }
-      .panel-container-wrapper {
-        flex-grow: 1;
-        padding: 0 30px 30px 30px;
+
+      body,
+      p,
+      span,
+      a,
+      li,
+      td,
+      th,
+      label,
+      button,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .h1,
+      .h2,
+      .h3,
+      .h4,
+      .h5,
+      .h6,
+      .fw-bold,
+      .card-title {
+        font-size: 9px !important;
       }
 
       .navbar-dashboard {
-        background-color: #ffffff;
-        border-radius: 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        margin-bottom: 25px;
-        padding: 20px 30px !important;
-      }
-      .metric-card {
-        border: none;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        background-color: #ffffff;
-        transition: transform 0.3s;
-      }
-      .metric-card:hover {
-        transform: translateY(-5px);
-      }
-      .table-container {
-        background: #fff;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        overflow-x: auto;
-      }
-      .panel-content {
-        animation: fadeIn 0.4s ease-in-out;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        flex-direction: column !important;
+        gap: 5px !important;
+        align-items: center !important;
       }
 
-      /* Dashboard Responsive support for small viewports down to 150px with Hamburger Off-Canvas */
-      #sidebarCollapse {
-        display: none;
+      #panel-container {
+        padding: 2px !important;
       }
-      @media (max-width: 768px) {
-        .wrapper {
-          display: block !important;
-        }
-        #sidebar {
-          position: fixed !important;
-          top: 0;
-          left: -70%;
-          height: 100vh !important;
-          z-index: 1050 !important;
-          width: 70% !important;
-          min-width: 70% !important;
-          max-width: 70% !important;
-          transition: all 0.3s ease;
-          box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
-        }
-        #sidebar .sidebar-header {
-          padding: 15px 5px !important;
-        }
-        #sidebar .sidebar-header a {
-          padding: 5px !important;
-          display: block !important;
-          width: 100% !important;
-        }
-        #sidebar .sidebar-header a img {
-          max-width: 95% !important;
-          height: 45px !important;
-          display: inline-block !important;
-          object-fit: contain;
-        }
-        #sidebar.active {
-          left: 0 !important;
-        }
-        #sidebar.active ~ #content {
-          filter: blur(4px);
-          pointer-events: none;
-        }
-        body.sidebar-open,
-        html.sidebar-open,
-        body.sidebar-open .wrapper {
-          overflow: hidden !important;
-          height: 100vh !important;
-          max-height: 100vh !important;
-        }
-        #close-sidebar {
-          display: block !important;
-        }
-        #sidebar ul.components {
-          padding: 15px 0 !important;
-          display: block !important;
-        }
-        #sidebar ul li {
-          width: 100% !important;
-        }
-        #sidebar ul li a {
-          padding: 10px 15px !important;
-          font-size: 0.9em !important;
-          border-radius: 0 !important;
-        }
-        #sidebar ul li a i {
-          font-size: 1.1em !important;
-          margin-right: 8px !important;
-        }
-        #sidebarCollapse {
-          display: inline-block !important;
-          padding: 4px 8px !important;
-          font-size: 14px !important;
-        }
-        .panel-container-wrapper {
-          padding: 15px !important;
-        }
-        .navbar-dashboard {
-          padding: 4px 10px !important;
-          margin-bottom: 8px !important;
-        }
-        .navbar-dashboard h4 {
-          font-size: 15px !important;
-        }
-      }
+    }
 
-      @media (max-width: 280px) {
-        #sidebar .sidebar-header {
-          padding: 10px 3px !important;
-        }
-        #sidebar .sidebar-header a img {
-          max-width: 95% !important;
-          height: 38px !important;
-        }
-        #sidebar ul.components {
-          flex-direction: column !important;
-          align-items: stretch !important;
-          padding: 5px !important;
-        }
-        #sidebar ul li a {
-          font-size: 10px !important;
-          padding: 5px 8px !important;
-        }
-        #sidebar ul li a i {
-          font-size: 11px !important;
-          margin-right: 5px !important;
-        }
-        .panel-container-wrapper {
-          padding: 4px !important;
-        }
-        .navbar-dashboard {
-          padding: 2px 4px !important;
-          margin-bottom: 4px !important;
-        }
-        .navbar-dashboard h4 {
-          font-size: 11px !important;
-        }
-        #sidebarCollapse {
-          padding: 2px 5px !important;
-          font-size: 11px !important;
-        }
-        /* Grid, Font sizes & Card scaling for ultra narrow screens */
-        body,
-        p,
-        span,
-        a,
-        li,
-        td,
-        th,
-        label,
-        button,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        .h1,
-        .h2,
-        .h3,
-        .h4,
-        .h5,
-        .h6,
-        .fw-bold,
-        .card-title {
-          font-size: 11px !important;
-        }
-        .row {
-          margin-right: 0 !important;
-          margin-left: 0 !important;
-        }
-        .row > * {
-          padding-right: 2px !important;
-          padding-left: 2px !important;
-          max-width: 100% !important;
-          overflow: hidden !important;
-        }
-        .table-container {
-          padding: 8px !important;
-          max-width: 100% !important;
-          overflow-x: auto !important;
-        }
-        .table-responsive {
-          margin: 0 !important;
-          max-width: 100% !important;
-          width: 100% !important;
-          overflow-x: auto !important;
-          display: block !important;
-          -webkit-overflow-scrolling: touch;
-        }
-        .metric-card {
-          padding: 6px !important;
-        }
-        .metric-card div[style*="width: 50px"] {
-          width: 30px !important;
-          height: 30px !important;
-        }
-        .metric-card i.fa-2x {
-          font-size: 1.1rem !important;
-        }
-        .metric-card h3 {
-          font-size: 12px !important;
-          margin-top: 4px !important;
-        }
-        .p-4,
-        .p-5,
-        .p-3 {
-          padding: 8px !important;
-        }
-      }
+    /* Force th and td to stay in a single line and enable scrolling */
+    th,
+    td {
+      white-space: nowrap !important;
+    }
 
-      @media (max-width: 180px) {
-        #sidebar ul li a {
-          font-size: 9.5px !important;
-          padding: 4px 6px !important;
-        }
-        body,
-        p,
-        span,
-        a,
-        li,
-        td,
-        th,
-        label,
-        button,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        .h1,
-        .h2,
-        .h3,
-        .h4,
-        .h5,
-        .h6,
-        .fw-bold,
-        .card-title {
-          font-size: 9px !important;
-        }
-        .navbar-dashboard {
-          flex-direction: column !important;
-          gap: 5px !important;
-          align-items: center !important;
-        }
-        .panel-container-wrapper {
-          padding: 2px !important;
-        }
-      }
+    .table-responsive table {
+      min-width: 480px !important;
+      /* Force table to maintain full layout width on mobile */
+    }
 
-      /* Force th and td to stay in a single line and enable scrolling */
-      th,
-      td {
-        white-space: nowrap !important;
-      }
-      .table-responsive table {
-        min-width: 480px !important; /* Force table to maintain full layout width on mobile */
-      }
-      .table-responsive {
-        overflow-x: auto !important;
-        display: block !important;
-        width: 100% !important;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrapper">
-      <!-- Sidebar -->
-      <nav id="sidebar">
-        <div class="sidebar-header d-flex align-items-center justify-content-between">
-          <a
-            href="dashboard.html"
-            class="d-flex align-items-center justify-content-center text-decoration-none flex-grow-1"
-          >
-            <img src="img/logo-stackly.webp" alt="Logo" style="height: 35px; max-width: 100%; object-fit: contain;" />
+    .table-responsive {
+      overflow-x: auto !important;
+      display: block !important;
+      width: 100% !important;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header d-flex align-items-center justify-content-between">
+        <a href="dashboard.html"
+          class="d-flex align-items-center justify-content-center text-decoration-none flex-grow-1">
+          <img src="img/logo-stackly.webp" alt="Logo" style="height: 35px; max-width: 100%; object-fit: contain;" />
+        </a>
+        <!-- Close button for mobile screen view -->
+        <button id="close-sidebar" class="btn text-white p-0 ms-2"
+          style="background: transparent; border: none; font-size: 22px; line-height: 1; outline: none; box-shadow: none;">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+
+      <ul class="list-unstyled components" id="sidebar-links">
+        <li class="active">
+          <a data-target="overview"><i class="fa fa-home"></i>Overview</a>
+        </li>
+        <li>
+          <a data-target="my-courses"><i class="fa fa-book-open"></i>My Courses</a>
+        </li>
+        <li>
+          <a data-target="course-manager"><i class="fa fa-folder-open"></i>Course Manager</a>
+        </li>
+        <li>
+          <a data-target="users-students"><i class="fa fa-users"></i>Users & Students</a>
+        </li>
+        <li>
+          <a data-target="analytics-earnings"><i class="fa fa-chart-bar"></i>Analytics & Earnings</a>
+        </li>
+        <li>
+          <a data-target="certificates"><i class="fa fa-award"></i>Certificates</a>
+        </li>
+        <li>
+          <a data-target="announcements"><i class="fa fa-bell"></i>Announcements</a>
+        </li>
+        <li>
+          <a data-target="help-support"><i class="fa fa-question-circle"></i>Help & Support</a>
+        </li>
+        <li>
+          <a data-target="settings"><i class="fa fa-cog"></i>Settings</a>
+        </li>
+      </ul>
+      <div class="px-4 py-3 border-top border-secondary">
+        <a id="logout-btn" class="text-danger fw-bold text-decoration-none" style="cursor: pointer; display: block;">
+          <i class="fa fa-sign-out-alt me-2"></i>Logout
+        </a>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light navbar-dashboard flex-column align-items-stretch">
+        <div class="container-fluid d-flex align-items-center justify-content-between p-0">
+          <a href="dashboard.html" class="navbar-brand d-flex d-md-none align-items-center p-0 m-0">
+            <img src="img/logo-stackly.webp" alt="Logo" style="height: 32px;" />
           </a>
-          <!-- Close button for mobile screen view -->
-          <button
-            id="close-sidebar"
-            class="btn text-white p-0 ms-2"
-            style="background: transparent; border: none; font-size: 22px; line-height: 1; outline: none; box-shadow: none;"
-          >
-            <i class="fa fa-times"></i>
+          <h4 class="m-0 text-start flex-grow-1 px-0 d-none d-sm-block" id="welcome-message" style="font-size: 16px;">
+            Welcome Back!</h4>
+          <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
+            <i class="fa fa-bars"></i>
           </button>
         </div>
-
-        <ul class="list-unstyled components" id="sidebar-links">
-          <li class="active">
-            <a data-target="overview"><i class="fa fa-home"></i>Overview</a>
-          </li>
-          <li>
-            <a data-target="my-courses"
-              ><i class="fa fa-book-open"></i>My Courses</a
-            >
-          </li>
-          <li>
-            <a data-target="course-manager"
-              ><i class="fa fa-folder-open"></i>Course Manager</a
-            >
-          </li>
-          <li>
-            <a data-target="users-students"
-              ><i class="fa fa-users"></i>Users & Students</a
-            >
-          </li>
-          <li>
-            <a data-target="analytics-earnings"
-              ><i class="fa fa-chart-bar"></i>Analytics & Earnings</a
-            >
-          </li>
-          <li>
-            <a data-target="certificates"
-              ><i class="fa fa-award"></i>Certificates</a
-            >
-          </li>
-          <li>
-            <a data-target="announcements"
-              ><i class="fa fa-bell"></i>Announcements</a
-            >
-          </li>
-          <li>
-            <a data-target="help-support"
-              ><i class="fa fa-question-circle"></i>Help & Support</a
-            >
-          </li>
-          <li>
-            <a data-target="settings"><i class="fa fa-cog"></i>Settings</a>
-          </li>
-        </ul>
-        <div class="px-4 py-3 border-top border-secondary">
-          <a id="logout-btn" class="text-danger fw-bold text-decoration-none" style="cursor: pointer; display: block;">
-            <i class="fa fa-sign-out-alt me-2"></i>Logout
-          </a>
+        <!-- Show Welcome message on extra small screens below the header row -->
+        <div class="w-100 text-start d-block d-sm-none"
+          style="margin-top: -3px !important; margin-bottom: 2px !important;">
+          <h5 class="m-0 fw-bold" id="welcome-message-mobile"
+            style="font-size: 12px; margin: 0 !important; line-height: 1.1; padding: 0 !important;">Welcome Back!</h5>
         </div>
       </nav>
 
-      <!-- Page Content -->
-      <div id="content">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light navbar-dashboard flex-column align-items-stretch">
-          <div class="container-fluid d-flex align-items-center justify-content-between p-0">
-            <a href="dashboard.html" class="navbar-brand d-flex align-items-center p-0 m-0">
-              <img src="img/logo-stackly.webp" alt="Logo" style="height: 32px;" />
-            </a>
-            <h4 class="m-0 text-center flex-grow-1 px-3 d-none d-sm-block" id="welcome-message" style="font-size: 16px;">Welcome Back!</h4>
-            <button
-              type="button"
-              id="sidebarCollapse"
-              class="btn btn-outline-primary"
-            >
-              <i class="fa fa-bars"></i>
-            </button>
-          </div>
-          <!-- Show Welcome message on extra small screens below the header row -->
-          <div class="w-100 text-start d-block d-sm-none" style="margin-top: -3px !important; margin-bottom: 2px !important;">
-            <h5 class="m-0 fw-bold" id="welcome-message-mobile" style="font-size: 12px; margin: 0 !important; line-height: 1.1; padding: 0 !important;">Welcome Back!</h5>
-          </div>
-        </nav>
-
-        <!-- Main Dashboard View Container -->
-        <div id="panel-container">
-          <!-- 1. Overview Panel -->
-          <div id="panel-overview" class="panel-content">
-            <!-- Dynamic overview cards loaded via Javascript depending on Role -->
-            <div class="row g-4 mb-4" id="overview-metrics-row"></div>
-            <div class="row g-4">
-              <div class="col-md-8">
-                <div
-                  class="table-container mb-4"
-                  id="overview-main-table"
-                ></div>
-              </div>
-              <div class="col-md-4">
-                <div class="table-container" id="overview-secondary-card"></div>
-              </div>
+      <!-- Main Dashboard View Container -->
+      <div id="panel-container">
+        <!-- 1. Overview Panel -->
+        <div id="panel-overview" class="panel-content">
+          <!-- Dynamic overview cards loaded via Javascript depending on Role -->
+          <div class="row g-4 mb-4" id="overview-metrics-row"></div>
+          <div class="row g-4">
+            <div class="col-md-8">
+              <div class="table-container mb-4" id="overview-main-table"></div>
             </div>
-          </div>
-
-          <!-- 2. My Courses Panel -->
-          <div id="panel-my-courses" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4">
-                <i class="fa fa-book-open text-primary me-2"></i>My Courses
-              </h5>
-              <div id="my-courses-content"></div>
-            </div>
-          </div>
-
-          <!-- 3. Course Manager Panel -->
-          <div id="panel-course-manager" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4" id="course-manager-title">Course Manager</h5>
-              <div id="course-manager-content"></div>
-            </div>
-          </div>
-
-          <!-- 4. Users & Students Panel -->
-          <div id="panel-users-students" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4" id="users-students-title">Users & Students</h5>
-              <div id="users-students-content"></div>
-            </div>
-          </div>
-
-          <!-- 5. Analytics & Earnings Panel -->
-          <div id="panel-analytics-earnings" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4" id="analytics-earnings-title">
-                Analytics & Earnings
-              </h5>
-              <div id="analytics-earnings-content"></div>
-            </div>
-          </div>
-
-          <!-- 6. Certificates Panel -->
-          <div id="panel-certificates" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4">
-                <i class="fa fa-award text-primary me-2"></i>Certificates Center
-              </h5>
-              <div id="certificates-content"></div>
-            </div>
-          </div>
-
-          <!-- 7. Announcements Panel -->
-          <div id="panel-announcements" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4">
-                <i class="fa fa-bell text-primary me-2"></i>Announcements
-              </h5>
-              <div id="announcements-content"></div>
-            </div>
-          </div>
-
-          <!-- 8. Help & Support Panel -->
-          <div id="panel-help-support" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4">
-                <i class="fa fa-question-circle text-primary me-2"></i>Help &
-                Support
-              </h5>
-              <div id="help-support-content"></div>
-            </div>
-          </div>
-
-          <!-- 9. Settings Panel -->
-          <div id="panel-settings" class="panel-content d-none">
-            <div class="table-container">
-              <h5 class="mb-4">
-                <i class="fa fa-cog text-primary me-2"></i>Account Settings
-              </h5>
-              <div id="settings-content"></div>
+            <div class="col-md-4">
+              <div class="table-container" id="overview-secondary-card"></div>
             </div>
           </div>
         </div>
-        <footer
-          class="text-center py-4 mt-auto text-muted small border-top"
-          style="background-color: #ffffff"
-        >
-          &copy; 2026 STACKLY eLEARNING. All rights reserved. |
-          <a href="about.html" class="text-decoration-none text-muted"
-            >About Us</a
-          >
-          | <a href="faq.html" class="text-decoration-none text-muted">FAQ</a>
-        </footer>
+
+        <!-- 2. My Courses Panel -->
+        <div id="panel-my-courses" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4">
+              <i class="fa fa-book-open text-primary me-2"></i>My Courses
+            </h5>
+            <div id="my-courses-content"></div>
+          </div>
+        </div>
+
+        <!-- 3. Course Manager Panel -->
+        <div id="panel-course-manager" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4" id="course-manager-title">Course Manager</h5>
+            <div id="course-manager-content"></div>
+          </div>
+        </div>
+
+        <!-- 4. Users & Students Panel -->
+        <div id="panel-users-students" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4" id="users-students-title">Users & Students</h5>
+            <div id="users-students-content"></div>
+          </div>
+        </div>
+
+        <!-- 5. Analytics & Earnings Panel -->
+        <div id="panel-analytics-earnings" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4" id="analytics-earnings-title">
+              Analytics & Earnings
+            </h5>
+            <div id="analytics-earnings-content"></div>
+          </div>
+        </div>
+
+        <!-- 6. Certificates Panel -->
+        <div id="panel-certificates" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4">
+              <i class="fa fa-award text-primary me-2"></i>Certificates Center
+            </h5>
+            <div id="certificates-content"></div>
+          </div>
+        </div>
+
+        <!-- 7. Announcements Panel -->
+        <div id="panel-announcements" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4">
+              <i class="fa fa-bell text-primary me-2"></i>Announcements
+            </h5>
+            <div id="announcements-content"></div>
+          </div>
+        </div>
+
+        <!-- 8. Help & Support Panel -->
+        <div id="panel-help-support" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4">
+              <i class="fa fa-question-circle text-primary me-2"></i>Help &
+              Support
+            </h5>
+            <div id="help-support-content"></div>
+          </div>
+        </div>
+
+        <!-- 9. Settings Panel -->
+        <div id="panel-settings" class="panel-content d-none">
+          <div class="table-container">
+            <h5 class="mb-4">
+              <i class="fa fa-cog text-primary me-2"></i>Account Settings
+            </h5>
+            <div id="settings-content"></div>
+          </div>
+        </div>
       </div>
+      <footer class="text-center py-4 mt-auto text-muted small border-top" style="background-color: #ffffff">
+        &copy; 2026 STACKLY eLEARNING. All rights reserved. |
+        <a href="about.html" class="text-decoration-none text-muted">About Us</a>
+        | <a href="faq.html" class="text-decoration-none text-muted">FAQ</a>
+      </footer>
     </div>
+  </div>
 
-    <!-- JS Files -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        // Sidebar collapse toggler logic
-        $("#sidebarCollapse").on("click", function (e) {
-          e.stopPropagation();
-          $("#sidebar").toggleClass("active");
-          $("html, body").toggleClass("sidebar-open", $("#sidebar").hasClass("active"));
-        });
+  <!-- JS Files -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Sidebar collapse toggler logic
+      $("#sidebarCollapse").on("click", function (e) {
+        e.stopPropagation();
+        $("#sidebar").toggleClass("active");
+        $("html, body").toggleClass("sidebar-open", $("#sidebar").hasClass("active"));
+      });
 
-        // Hide sidebar when clicking outside on mobile
-        $(document).on("click", function (e) {
-          if ($(window).width() <= 768) {
-            if (
-              !$(e.target).closest("#sidebar").length &&
-              !$(e.target).closest("#sidebarCollapse").length
-            ) {
-              $("#sidebar").removeClass("active");
-              $("html, body").removeClass("sidebar-open");
-            }
-          }
-        });
-
-        // Hide sidebar when clicking any menu link
-        $(document).on("click", "#sidebar ul li a", function () {
-          if ($(window).width() <= 768) {
+      // Hide sidebar when clicking outside on mobile
+      $(document).on("click", function (e) {
+        if ($(window).width() <= 768) {
+          if (
+            !$(e.target).closest("#sidebar").length &&
+            !$(e.target).closest("#sidebarCollapse").length
+          ) {
             $("#sidebar").removeClass("active");
             $("html, body").removeClass("sidebar-open");
           }
-        });
+        }
+      });
 
-        // Close sidebar button logic
-        $(document).on("click", "#close-sidebar", function () {
+      // Hide sidebar when clicking any menu link
+      $(document).on("click", "#sidebar ul li a", function () {
+        if ($(window).width() <= 768) {
           $("#sidebar").removeClass("active");
           $("html, body").removeClass("sidebar-open");
-        });
-
-        // Logout handler
-        $(document).on("click", "#logout-btn", function (e) {
-          e.preventDefault();
-          localStorage.removeItem("currentUser");
-          window.location.href = "login.html";
-        });
-
-        // Authenticate User
-        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        if (!currentUser) {
-          window.location.href = "login.html";
-          return;
         }
+      });
 
-        // Set Role Profile Layout
-        var role = currentUser.role.toLowerCase();
-        $("#user-role-badge").text(role);
-        $("#user-display-name").text(currentUser.name);
-        $("#welcome-message, #welcome-message-mobile").text("Welcome Back, " + currentUser.name + "!");
+      // Close sidebar button logic
+      $(document).on("click", "#close-sidebar", function () {
+        $("#sidebar").removeClass("active");
+        $("html, body").removeClass("sidebar-open");
+      });
 
-        // Populate System Announcements (localStorage database)
-        var announcements = JSON.parse(
-          localStorage.getItem("announcements"),
-        ) || [
+      // Logout handler
+      $(document).on("click", "#logout-btn", function (e) {
+        e.preventDefault();
+        localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+      });
+
+      // Authenticate User
+      var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      if (!currentUser) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Set Role Profile Layout
+      var role = currentUser.role.toLowerCase();
+      $("#user-role-badge").text(role);
+      $("#user-display-name").text(currentUser.name);
+      $("#welcome-message, #welcome-message-mobile").text("Welcome Back, " + currentUser.name + "!");
+
+      // Populate System Announcements (localStorage database)
+      var announcements = JSON.parse(
+        localStorage.getItem("announcements"),
+      ) || [
           {
             title: "Live Python Q&A Scheduled",
             msg: "Join the live Q&A session with Python experts on Friday at 5:00 PM.",
@@ -672,12 +713,12 @@
             by: "Admin",
           },
         ];
-        localStorage.setItem("announcements", JSON.stringify(announcements));
+      localStorage.setItem("announcements", JSON.stringify(announcements));
 
-        // Populate Help Tickets (localStorage database)
-        var supportTickets = JSON.parse(
-          localStorage.getItem("supportTickets"),
-        ) || [
+      // Populate Help Tickets (localStorage database)
+      var supportTickets = JSON.parse(
+        localStorage.getItem("supportTickets"),
+      ) || [
           {
             subject: "Certificate download failing",
             msg: "Whenever I click download, it gives me a network error.",
@@ -691,40 +732,40 @@
             user: "instructor@elearning.com",
           },
         ];
-        localStorage.setItem("supportTickets", JSON.stringify(supportTickets));
+      localStorage.setItem("supportTickets", JSON.stringify(supportTickets));
 
-        // Initialize Dynamic Content Views
-        renderDashboardData();
+      // Initialize Dynamic Content Views
+      renderDashboardData();
 
-        // JQuery SPA Sidebar Panel Switcher
-        $("#sidebar-links a, [data-target-profile]").on("click", function (e) {
-          e.preventDefault();
-          var targetTab =
-            $(this).data("target") || $(this).data("target-profile");
+      // JQuery SPA Sidebar Panel Switcher
+      $("#sidebar-links a, [data-target-profile]").on("click", function (e) {
+        e.preventDefault();
+        var targetTab =
+          $(this).data("target") || $(this).data("target-profile");
 
-          // Update Sidebar Active state
-          $("#sidebar-links li").removeClass("active");
-          $("#sidebar-links a[data-target='" + targetTab + "']")
-            .parent()
-            .addClass("active");
+        // Update Sidebar Active state
+        $("#sidebar-links li").removeClass("active");
+        $("#sidebar-links a[data-target='" + targetTab + "']")
+          .parent()
+          .addClass("active");
 
-          // Toggle content panels
-          $(".panel-content").addClass("d-none");
-          $("#panel-" + targetTab).removeClass("d-none");
-        });
+        // Toggle content panels
+        $(".panel-content").addClass("d-none");
+        $("#panel-" + targetTab).removeClass("d-none");
+      });
 
-        // Dynamic content population based on current logged in user role
-        // Dynamic content population based on current logged in user role
-        function renderDashboardData() {
-          var users = JSON.parse(localStorage.getItem("users")) || [];
+      // Dynamic content population based on current logged in user role
+      // Dynamic content population based on current logged in user role
+      function renderDashboardData() {
+        var users = JSON.parse(localStorage.getItem("users")) || [];
 
-          // ======================= OVERVIEW PANEL =======================
-          var metricsHtml = "";
-          var mainTableHtml = "";
-          var secondaryCardHtml = "";
+        // ======================= OVERVIEW PANEL =======================
+        var metricsHtml = "";
+        var mainTableHtml = "";
+        var secondaryCardHtml = "";
 
-          if (role === "student") {
-            metricsHtml = `
+        if (role === "student") {
+          metricsHtml = `
               <div class="col-md-3">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
@@ -771,7 +812,7 @@
               </div>
             `;
 
-            mainTableHtml = `
+          mainTableHtml = `
               <h5 class="mb-4"><i class="fa fa-list text-primary me-2"></i>My Learning Progress</h5>
               <div class="table-responsive">
                 <table class="table table-hover">
@@ -806,7 +847,7 @@
               </ul>
             `;
 
-            secondaryCardHtml = `
+          secondaryCardHtml = `
               <h5 class="mb-3"><i class="fa fa-history text-primary me-2"></i>Recent Activity Timeline</h5>
               <ul class="list-unstyled mb-5">
                 <li class="border-left pl-3 pb-3 position-relative" style="border-left: 2px solid var(--primary-theme); padding-left: 15px;">
@@ -831,8 +872,8 @@
                 <strong>Hackathon reminder!</strong> The global coding contest ends in 15 days. Submissions are open.
               </div>
             `;
-          } else if (role === "instructor") {
-            metricsHtml = `
+        } else if (role === "instructor") {
+          metricsHtml = `
               <div class="col-md-3">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
@@ -879,7 +920,7 @@
               </div>
             `;
 
-            mainTableHtml = `
+          mainTableHtml = `
               <h5 class="mb-4"><i class="fa fa-list text-primary me-2"></i>My Teaching Courses</h5>
               <table class="table table-hover">
                 <thead>
@@ -910,7 +951,7 @@
               </ul>
             `;
 
-            secondaryCardHtml = `
+          secondaryCardHtml = `
               <h5 class="mb-3"><i class="fa fa-question-circle text-primary me-2"></i>Student Requests</h5>
               <ul class="list-unstyled mb-5">
                 <li class="border-bottom pb-2 mb-2">
@@ -928,8 +969,8 @@
                 Updating your course description regularly helps boost search ranking index placements by 15%.
               </div>
             `;
-          } else if (role === "admin") {
-            metricsHtml = `
+        } else if (role === "admin") {
+          metricsHtml = `
               <div class="col-md-3">
                 <div class="card metric-card p-4">
                   <div class="d-flex align-items-center justify-content-between">
@@ -976,19 +1017,19 @@
               </div>
             `;
 
-            mainTableHtml = `
+          mainTableHtml = `
               <h5 class="mb-4"><i class="fa fa-users text-primary me-2"></i>Recent System Registrants</h5>
               <table class="table">
                 <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
                 <tbody>
                   ${users
-                    .slice(-4)
-                    .map(
-                      (u) => `
+              .slice(-4)
+              .map(
+                (u) => `
                     <tr><td>${u.name}</td><td>${u.email}</td><td><span class="badge bg-info text-capitalize">${u.role}</span></td></tr>
                   `,
-                    )
-                    .join("")}
+              )
+              .join("")}
                 </tbody>
               </table>
 
@@ -1009,7 +1050,7 @@
               </div>
             `;
 
-            secondaryCardHtml = `
+          secondaryCardHtml = `
               <h5 class="mb-3"><i class="fa fa-cogs text-primary me-2"></i>Platform Actions</h5>
               <div class="d-grid gap-2 mb-4">
                 <button class="btn btn-outline-primary btn-sm text-start" onclick="$('[data-target=\'course-manager\']').click()"><i class="fa fa-check me-2"></i>Approve Pending Courses</button>
@@ -1022,16 +1063,16 @@
                 <i class="fa fa-check me-2"></i>Last backup completed: Today at 4:00 AM (Cloud Archive).
               </div>
             `;
-          }
+        }
 
-          $("#overview-metrics-row").html(metricsHtml);
-          $("#overview-main-table").html(mainTableHtml);
-          $("#overview-secondary-card").html(secondaryCardHtml);
+        $("#overview-metrics-row").html(metricsHtml);
+        $("#overview-main-table").html(mainTableHtml);
+        $("#overview-secondary-card").html(secondaryCardHtml);
 
-          // ======================= 2. MY COURSES PANEL =======================
-          var myCoursesHtml = "";
-          if (role === "student") {
-            myCoursesHtml = `
+        // ======================= 2. MY COURSES PANEL =======================
+        var myCoursesHtml = "";
+        if (role === "student") {
+          myCoursesHtml = `
               <h5 class="mb-4">My Current Classes</h5>
               <div class="row g-4">
                 <div class="col-md-4">
@@ -1134,8 +1175,8 @@
                 </div>
               </div>
             `;
-          } else if (role === "instructor") {
-            myCoursesHtml = `
+        } else if (role === "instructor") {
+          myCoursesHtml = `
               <div class="table-responsive">
                 <table class="table table-hover align-middle">
                   <thead>
@@ -1153,8 +1194,8 @@
                 </table>
               </div>
             `;
-          } else if (role === "admin") {
-            myCoursesHtml = `
+        } else if (role === "admin") {
+          myCoursesHtml = `
               <div class="table-responsive">
                 <table class="table table-hover align-middle">
                   <thead>
@@ -1170,16 +1211,16 @@
                 </table>
               </div>
             `;
-          }
-          $("#my-courses-content").html(myCoursesHtml);
+        }
+        $("#my-courses-content").html(myCoursesHtml);
 
-          // ======================= 3. COURSE MANAGER PANEL =======================
-          var courseManagerTitle = "";
-          var courseManagerHtml = "";
+        // ======================= 3. COURSE MANAGER PANEL =======================
+        var courseManagerTitle = "";
+        var courseManagerHtml = "";
 
-          if (role === "student") {
-            courseManagerTitle = `<i class="fa fa-folder-open text-primary me-2"></i>Browse Course Catalog`;
-            courseManagerHtml = `
+        if (role === "student") {
+          courseManagerTitle = `<i class="fa fa-folder-open text-primary me-2"></i>Browse Course Catalog`;
+          courseManagerHtml = `
               <div class="row mb-4">
                 <div class="col-md-8"><input type="text" class="form-control" placeholder="Search for courses (e.g. Photoshop, Marketing...)"></div>
                 <div class="col-md-4"><button class="btn btn-primary w-100" onclick="window.location.href='404.html'">Search Catalog</button></div>
@@ -1247,9 +1288,9 @@
                 </div>
               </div>
             `;
-          } else if (role === "instructor") {
-            courseManagerTitle = `<i class="fa fa-plus-circle text-primary me-2"></i>Publish a New Course`;
-            courseManagerHtml = `
+        } else if (role === "instructor") {
+          courseManagerTitle = `<i class="fa fa-plus-circle text-primary me-2"></i>Publish a New Course`;
+          courseManagerHtml = `
               <div class="row g-4">
                 <div class="col-md-7">
                   <form id="new-course-publish-form" class="bg-light p-4 rounded border border-light">
@@ -1289,9 +1330,9 @@
                 </div>
               </div>
             `;
-          } else if (role === "admin") {
-            courseManagerTitle = `<i class="fa fa-check-circle text-primary me-2"></i>Course Approval Queue`;
-            courseManagerHtml = `
+        } else if (role === "admin") {
+          courseManagerTitle = `<i class="fa fa-check-circle text-primary me-2"></i>Course Approval Queue`;
+          courseManagerHtml = `
               <div class="table-responsive">
                 <table class="table align-middle">
                   <thead>
@@ -1322,26 +1363,23 @@
                 </table>
               </div>
             `;
-          }
-          $("#course-manager-title").html(courseManagerTitle);
-          $("#course-manager-content").html(courseManagerHtml);
+        }
+        $("#course-manager-title").html(courseManagerTitle);
+        $("#course-manager-content").html(courseManagerHtml);
 
-          // Handle Instructor Course Publish Form
-          $("#new-course-publish-form").on("submit", function (e) {
-            e.preventDefault();
-            alert(
-              "Course submitted successfully to Administrator for verification!",
-            );
-            this.reset();
-          });
+        // Handle Instructor Course Publish Form
+        $(document).on("submit", "#new-course-publish-form", function (e) {
+          e.preventDefault();
+          window.location.href = "404.html";
+        });
 
-          // ======================= 4. USERS & STUDENTS PANEL =======================
-          var usersStudentsTitle = "";
-          var usersStudentsHtml = "";
+        // ======================= 4. USERS & STUDENTS PANEL =======================
+        var usersStudentsTitle = "";
+        var usersStudentsHtml = "";
 
-          if (role === "student") {
-            usersStudentsTitle = `<i class="fa fa-users text-primary me-2"></i>My Classmates`;
-            usersStudentsHtml = `
+        if (role === "student") {
+          usersStudentsTitle = `<i class="fa fa-users text-primary me-2"></i>My Classmates`;
+          usersStudentsHtml = `
               <div class="row g-3">
                 <div class="col-md-3">
                   <div class="card p-3 border-0 shadow-sm text-center h-100 bg-white">
@@ -1409,9 +1447,9 @@
                 </div>
               </div>
             `;
-          } else if (role === "instructor") {
-            usersStudentsTitle = `<i class="fa fa-users text-primary me-2"></i>Students Enrolled in Your Classes`;
-            usersStudentsHtml = `
+        } else if (role === "instructor") {
+          usersStudentsTitle = `<i class="fa fa-users text-primary me-2"></i>Students Enrolled in Your Classes`;
+          usersStudentsHtml = `
               <div class="row g-4">
                 <div class="col-md-8">
                   <div class="table-responsive">
@@ -1440,9 +1478,9 @@
                 </div>
               </div>
             `;
-          } else if (role === "admin") {
-            usersStudentsTitle = `<i class="fa fa-users-cog text-primary me-2"></i>System User Management`;
-            usersStudentsHtml = `
+        } else if (role === "admin") {
+          usersStudentsTitle = `<i class="fa fa-users-cog text-primary me-2"></i>System User Management`;
+          usersStudentsHtml = `
               <div class="table-responsive">
                 <table class="table table-hover align-middle">
                   <thead>
@@ -1452,19 +1490,19 @@
                 </table>
               </div>
             `;
-          }
-          $("#users-students-title").html(usersStudentsTitle);
-          $("#users-students-content").html(usersStudentsHtml);
+        }
+        $("#users-students-title").html(usersStudentsTitle);
+        $("#users-students-content").html(usersStudentsHtml);
 
-          if (role === "admin") {
-            loadAdminUserManagementSPA();
-          }
+        if (role === "admin") {
+          loadAdminUserManagementSPA();
+        }
 
-          function loadAdminUserManagementSPA() {
-            var activeUsers = JSON.parse(localStorage.getItem("users")) || [];
-            var tableBody = "";
-            activeUsers.forEach(function (u) {
-              tableBody += `
+        function loadAdminUserManagementSPA() {
+          var activeUsers = JSON.parse(localStorage.getItem("users")) || [];
+          var tableBody = "";
+          activeUsers.forEach(function (u) {
+            tableBody += `
                 <tr>
                   <td>${u.name}</td>
                   <td>${u.email}</td>
@@ -1476,37 +1514,37 @@
                   </td>
                 </tr>
               `;
-            });
-            $("#user-management-table-spa").html(tableBody);
-          }
+          });
+          $("#user-management-table-spa").html(tableBody);
+        }
 
-          $(document)
-            .off("click", ".delete-user-btn-spa")
-            .on("click", ".delete-user-btn-spa", function () {
-              var emailToDelete = $(this).data("email");
-              if (
-                confirm(
-                  "Are you sure you want to delete user " + emailToDelete + "?",
-                )
-              ) {
-                var activeUsers =
-                  JSON.parse(localStorage.getItem("users")) || [];
-                activeUsers = activeUsers.filter(function (u) {
-                  return u.email !== emailToDelete;
-                });
-                localStorage.setItem("users", JSON.stringify(activeUsers));
-                loadAdminUserManagementSPA();
-                renderDashboardData(); // Refresh overview numbers too
-              }
-            });
+        $(document)
+          .off("click", ".delete-user-btn-spa")
+          .on("click", ".delete-user-btn-spa", function () {
+            var emailToDelete = $(this).data("email");
+            if (
+              confirm(
+                "Are you sure you want to delete user " + emailToDelete + "?",
+              )
+            ) {
+              var activeUsers =
+                JSON.parse(localStorage.getItem("users")) || [];
+              activeUsers = activeUsers.filter(function (u) {
+                return u.email !== emailToDelete;
+              });
+              localStorage.setItem("users", JSON.stringify(activeUsers));
+              loadAdminUserManagementSPA();
+              renderDashboardData(); // Refresh overview numbers too
+            }
+          });
 
-          // ======================= 5. ANALYTICS & EARNINGS PANEL =======================
-          var analyticsTitle = "";
-          var analyticsHtml = "";
+        // ======================= 5. ANALYTICS & EARNINGS PANEL =======================
+        var analyticsTitle = "";
+        var analyticsHtml = "";
 
-          if (role === "student") {
-            analyticsTitle = `<i class="fa fa-chart-line text-primary me-2"></i>My Learning Logs`;
-            analyticsHtml = `
+        if (role === "student") {
+          analyticsTitle = `<i class="fa fa-chart-line text-primary me-2"></i>My Learning Logs`;
+          analyticsHtml = `
               <div class="row g-4">
                 <div class="col-md-8">
                   <div class="table-responsive">
@@ -1530,9 +1568,9 @@
                 </div>
               </div>
             `;
-          } else if (role === "instructor") {
-            analyticsTitle = `<i class="fa fa-chart-bar text-primary me-2"></i>Earnings & Enrollment Analytics`;
-            analyticsHtml = `
+        } else if (role === "instructor") {
+          analyticsTitle = `<i class="fa fa-chart-bar text-primary me-2"></i>Earnings & Enrollment Analytics`;
+          analyticsHtml = `
               <div class="row g-4">
                 <div class="col-md-7">
                   <h6 class="mb-3">Monthly Revenue Performance</h6>
@@ -1570,9 +1608,9 @@
                 </div>
               </div>
             `;
-          } else if (role === "admin") {
-            analyticsTitle = `<i class="fa fa-chart-pie text-primary me-2"></i>Financial & User Acquisition Reports`;
-            analyticsHtml = `
+        } else if (role === "admin") {
+          analyticsTitle = `<i class="fa fa-chart-pie text-primary me-2"></i>Financial & User Acquisition Reports`;
+          analyticsHtml = `
               <div class="row g-4">
                 <div class="col-md-8">
                   <div class="table-responsive">
@@ -1597,14 +1635,14 @@
                 </div>
               </div>
             `;
-          }
-          $("#analytics-earnings-title").html(analyticsTitle);
-          $("#analytics-earnings-content").html(analyticsHtml);
+        }
+        $("#analytics-earnings-title").html(analyticsTitle);
+        $("#analytics-earnings-content").html(analyticsHtml);
 
-          // ======================= 6. CERTIFICATES PANEL =======================
-          var certificatesHtml = "";
-          if (role === "student") {
-            certificatesHtml = `
+        // ======================= 6. CERTIFICATES PANEL =======================
+        var certificatesHtml = "";
+        if (role === "student") {
+          certificatesHtml = `
               <div class="row g-4">
                 <div class="col-md-7">
                   <div class="border p-4 rounded bg-white mb-4">
@@ -1635,8 +1673,8 @@
                 </div>
               </div>
             `;
-          } else {
-            certificatesHtml = `
+        } else {
+          certificatesHtml = `
               <div class="row g-4">
                 <div class="col-md-8">
                   <h6 class="mb-3">Recent Certificate Requests & Issuances</h6>
@@ -1670,13 +1708,13 @@
                 </div>
               </div>
             `;
-          }
-          $("#certificates-content").html(certificatesHtml);
+        }
+        $("#certificates-content").html(certificatesHtml);
 
-          // ======================= 7. ANNOUNCEMENTS PANEL =======================
-          var announcementsHtml = "";
-          announcements.forEach(function (a) {
-            announcementsHtml += `
+        // ======================= 7. ANNOUNCEMENTS PANEL =======================
+        var announcementsHtml = "";
+        announcements.forEach(function (a) {
+          announcementsHtml += `
               <div class="border p-4 rounded bg-white mb-3 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <h6 class="mb-0 fw-bold">${a.title}</h6>
@@ -1688,13 +1726,13 @@
                 </div>
               </div>
             `;
-          });
-          $("#announcements-content").html(announcementsHtml);
+        });
+        $("#announcements-content").html(announcementsHtml);
 
-          // ======================= 8. HELP & SUPPORT PANEL =======================
-          var supportHtml = "";
-          if (role === "admin") {
-            supportHtml = `
+        // ======================= 8. HELP & SUPPORT PANEL =======================
+        var supportHtml = "";
+        if (role === "admin") {
+          supportHtml = `
               <h6 class="mb-3">Active Support Tickets Queue</h6>
               <div class="table-responsive">
                 <table class="table">
@@ -1703,8 +1741,8 @@
                 </table>
               </div>
             `;
-          } else {
-            supportHtml = `
+        } else {
+          supportHtml = `
               <div class="row g-4">
                 <div class="col-md-5">
                   <h6 class="mb-3">Submit a Support Ticket</h6>
@@ -1726,17 +1764,17 @@
                 </div>
               </div>
             `;
-          }
-          $("#help-support-content").html(supportHtml);
-          loadTickets();
+        }
+        $("#help-support-content").html(supportHtml);
+        loadTickets();
 
-          function loadTickets() {
-            var activeTickets =
-              JSON.parse(localStorage.getItem("supportTickets")) || [];
-            if (role === "admin") {
-              var tableRows = "";
-              activeTickets.forEach(function (t, idx) {
-                tableRows += `
+        function loadTickets() {
+          var activeTickets =
+            JSON.parse(localStorage.getItem("supportTickets")) || [];
+          if (role === "admin") {
+            var tableRows = "";
+            activeTickets.forEach(function (t, idx) {
+              tableRows += `
                   <tr>
                     <td>${t.user}</td>
                     <td><strong>${t.subject}</strong></td>
@@ -1747,15 +1785,15 @@
                     </td>
                   </tr>
                 `;
-              });
-              $("#admin-tickets-table").html(tableRows);
-            } else {
-              var listHtml = "";
-              var userTickets = activeTickets.filter(
-                (t) => t.user === currentUser.email,
-              );
-              userTickets.forEach(function (t) {
-                listHtml += `
+            });
+            $("#admin-tickets-table").html(tableRows);
+          } else {
+            var listHtml = "";
+            var userTickets = activeTickets.filter(
+              (t) => t.user === currentUser.email,
+            );
+            userTickets.forEach(function (t) {
+              listHtml += `
                   <li class="list-group-item mb-2 border rounded">
                     <div class="d-flex justify-content-between align-items-center">
                       <h6 class="mb-1 fw-bold">${t.subject}</h6>
@@ -1764,59 +1802,38 @@
                     <p class="text-muted small mb-0">${t.msg}</p>
                   </li>
                 `;
-              });
-              if (userTickets.length === 0) {
-                listHtml = `<p class="text-muted small">You haven't submitted any support tickets yet.</p>`;
-              }
-              $("#user-tickets-list").html(listHtml);
-            }
-          }
-
-          // Handle Resolving Ticket
-          $(document)
-            .off("click", ".resolve-ticket-btn")
-            .on("click", ".resolve-ticket-btn", function () {
-              var idx = $(this).data("index");
-              var activeTickets =
-                JSON.parse(localStorage.getItem("supportTickets")) || [];
-              activeTickets[idx].status = "Closed";
-              localStorage.setItem(
-                "supportTickets",
-                JSON.stringify(activeTickets),
-              );
-              loadTickets();
-              renderDashboardData(); // Refresh Overview Count too
             });
+            if (userTickets.length === 0) {
+              listHtml = `<p class="text-muted small">You haven't submitted any support tickets yet.</p>`;
+            }
+            $("#user-tickets-list").html(listHtml);
+          }
+        }
 
-          // Handle Create Ticket
-          $("#new-ticket-form").on("submit", function (e) {
-            e.preventDefault();
-            var subject = $("#ticket-subject").val().trim();
-            var msg = $("#ticket-msg").val().trim();
-
+        // Handle Resolving Ticket
+        $(document)
+          .off("click", ".resolve-ticket-btn")
+          .on("click", ".resolve-ticket-btn", function () {
+            var idx = $(this).data("index");
             var activeTickets =
               JSON.parse(localStorage.getItem("supportTickets")) || [];
-            activeTickets.unshift({
-              subject: subject,
-              msg: msg,
-              status: "Open",
-              user: currentUser.email,
-            });
+            activeTickets[idx].status = "Closed";
             localStorage.setItem(
               "supportTickets",
               JSON.stringify(activeTickets),
             );
-
-            alert(
-              "Support Ticket Created Successfully! We will respond to you shortly.",
-            );
-            $("#ticket-subject").val("");
-            $("#ticket-msg").val("");
             loadTickets();
+            renderDashboardData(); // Refresh Overview Count too
           });
 
-          // ======================= 9. SETTINGS PANEL =======================
-          var settingsHtml = `
+        // Handle Create Ticket
+        $(document).on("submit", "#new-ticket-form", function (e) {
+          e.preventDefault();
+          window.location.href = "404.html";
+        });
+
+        // ======================= 9. SETTINGS PANEL =======================
+        var settingsHtml = `
             <form id="profile-settings-form" class="bg-light p-4 rounded">
               <h6 class="mb-3 border-bottom pb-2">Profile Details</h6>
               <div class="row mb-3">
@@ -1847,14 +1864,15 @@
               <button type="submit" class="btn btn-primary">Update Profile & Settings</button>
             </form>
           `;
-          $("#settings-content").html(settingsHtml);
+        $("#settings-content").html(settingsHtml);
 
-          $("#profile-settings-form").on("submit", function (e) {
-            e.preventDefault();
-            window.location.href = "404.html";
-          });
-        }
-      });
-    </script>
-  </body>
+        $("#profile-settings-form").on("submit", function (e) {
+          e.preventDefault();
+          window.location.href = "404.html";
+        });
+      }
+    });
+  </script>
+</body>
+
 </html>
