@@ -473,6 +473,10 @@
         </button>
       </div>
 
+      <div class="sidebar-user-profile text-center py-3 border-bottom mb-2" style="border-color: rgba(255, 255, 255, 0.1) !important;">
+        <h6 class="m-0 fw-bold text-capitalize" id="sidebar-user-role" style="font-size: 15px; letter-spacing: 0.5px; color: #06bbcc !important;">Role : Loading...</h6>
+      </div>
+
       <ul class="list-unstyled components" id="sidebar-links">
         <li class="active">
           <a data-target="overview"><i class="fa fa-home"></i>Overview</a>
@@ -689,6 +693,7 @@
       var role = currentUser.role.toLowerCase();
       $("#user-role-badge").text(role);
       $("#user-display-name").text(currentUser.name);
+      $("#sidebar-user-role").text("Role : " + role);
       $("#welcome-message, #welcome-message-mobile").text("Welcome Back, " + currentUser.name + "!");
 
       // Render Sidebar Links dynamically based on Role
@@ -728,22 +733,32 @@
       $("#sidebar-links").html(sidebarHtml);
 
       // Populate System Announcements (localStorage database)
-      var announcements = JSON.parse(
-        localStorage.getItem("announcements"),
-      ) || [
-          {
-            title: "Platform Maintenance Window",
-            desc: "On Sunday July 19th, 2AM-4AM IST for upgrading the learning analytics engine. Services might be offline.",
-            date: "July 12, 2026",
-            author: "System Admin",
-          },
-          {
-            title: "Introducing AI Mentorship Beta",
-            desc: "Now premium enrolled students can resolve coding tasks with our automated AI assistant on the learn panels.",
-            date: "July 08, 2026",
-            author: "Product Team",
-          },
-        ];
+      var announcements = [
+        {
+          title: "Platform Maintenance Window",
+          msg: "On Sunday July 19th, 2AM-4AM IST for upgrading the learning analytics engine. Services might be offline.",
+          date: "July 12, 2026",
+          by: "System Admin",
+        },
+        {
+          title: "Introducing AI Mentorship Beta",
+          msg: "Now premium enrolled students can resolve coding tasks with our automated AI assistant on the learn panels.",
+          date: "July 08, 2026",
+          by: "Product Team",
+        },
+        {
+          title: "Global Coding Hackathon 2026",
+          msg: "Submit your final web development project by July 28 to win cash rewards and certificates.",
+          date: "July 05, 2026",
+          by: "Hackathon Organizer",
+        },
+        {
+          title: "Figma UI Masterclass Published",
+          msg: "A new design course is available today. Head to course catalog to check it out.",
+          date: "July 02, 2026",
+          by: "Admin",
+        }
+      ];
       localStorage.setItem("announcements", JSON.stringify(announcements));
 
       // Populate Support Tickets (localStorage database)
