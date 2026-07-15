@@ -1948,7 +1948,12 @@
               </div>
               <div class="mb-4">
                 <label class="form-label">New Password (Leave blank to keep current password)</label>
-                <input type="password" class="form-control" id="profile-new-password" placeholder="••••••••">
+                <div class="position-relative">
+                  <input type="password" class="form-control pe-5" id="profile-new-password" placeholder="••••••••">
+                  <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted text-decoration-none pe-3" id="toggle-profile-password" style="z-index: 10;">
+                    <i class="fa fa-eye"></i>
+                  </button>
+                </div>
               </div>
 
               <h6 class="mb-3 border-bottom pb-2">Platform Preferences</h6>
@@ -1979,6 +1984,20 @@
             return;
           }
           window.location.href = "404.html";
+        });
+
+        // Toggle profile password visibility click handler
+        $(document).on("click", "#toggle-profile-password", function (e) {
+          e.preventDefault();
+          var input = $("#profile-new-password");
+          var icon = $(this).find("i");
+          if (input.attr("type") === "password") {
+            input.attr("type", "text");
+            icon.removeClass("fa-eye").addClass("fa-eye-slash");
+          } else {
+            input.attr("type", "password");
+            icon.removeClass("fa-eye-slash").addClass("fa-eye");
+          }
         });
       }
     });
