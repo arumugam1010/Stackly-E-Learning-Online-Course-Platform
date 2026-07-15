@@ -1395,6 +1395,30 @@ img {
   box-shadow: 0 12px 30px rgba(79, 70, 229, 0.2) !important;
 }
 
+/* Hover style matching service-item (third image) for Learning Path and Why Choose Us cards */
+.learning-card:not(.overflow-hidden):hover {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.learning-card:not(.overflow-hidden):hover h5,
+.learning-card:not(.overflow-hidden):hover p,
+.learning-card:not(.overflow-hidden):hover small,
+.learning-card:not(.overflow-hidden):hover i {
+  color: var(--light) !important;
+}
+
+.learning-card:not(.overflow-hidden):hover .btn-lg-square,
+.learning-card:not(.overflow-hidden):hover .rounded-circle {
+  background-color: var(--light) !important;
+  color: var(--primary) !important;
+}
+
+.learning-card:not(.overflow-hidden):hover .btn-lg-square i,
+.learning-card:not(.overflow-hidden):hover .rounded-circle i {
+  color: var(--primary) !important;
+}
+
 /* Bootstrap Theme Overrides */
 .btn-primary {
   color: #fff !important;
