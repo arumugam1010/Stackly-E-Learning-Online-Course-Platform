@@ -84,7 +84,7 @@
         <div>
           <strong class="text-white d-block mb-1"
             style="font-size: 10px; opacity: 0.8; letter-spacing: 0.5px;">Address</strong>
-          <i class="fa fa-map-marker-alt me-2 text-info"></i>Stackly Clothing, Chinna Tirupathi<br />Salem, Tamil Nadu -
+          <i class="fa fa-map-marker-alt me-2 text-info"></i>Stackly, MMR Complex, Chinna Thirupathi<br />Salem, Tamil Nadu -
           636008
         </div>
       </li>
@@ -229,17 +229,15 @@
             <div class="mb-3">
               <h6>Categories</h6>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" checked id="filter-design" class="category-filter"
-                  value="design" />
+                <input class="form-check-input category-filter" type="checkbox" checked id="filter-design" value="design" />
                 <label class="form-check-label" for="filter-design">Web Design</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="filter-dev" class="category-filter" value="dev" />
+                <input class="form-check-input category-filter" type="checkbox" id="filter-dev" value="dev" />
                 <label class="form-check-label" for="filter-dev">Development</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="filter-marketing" class="category-filter"
-                  value="marketing" />
+                <input class="form-check-input category-filter" type="checkbox" id="filter-marketing" value="marketing" />
                 <label class="form-check-label" for="filter-marketing">Marketing</label>
               </div>
             </div>
@@ -247,17 +245,64 @@
             <div class="mb-3">
               <h6>Skill Level</h6>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="lvl-beg" class="level-filter" value="beginner" />
+                <input class="form-check-input level-filter" type="checkbox" id="lvl-beg" value="beginner" />
                 <label class="form-check-label" for="lvl-beg">Beginner</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="lvl-int" class="level-filter"
-                  value="intermediate" />
+                <input class="form-check-input level-filter" type="checkbox" id="lvl-int" value="intermediate" />
                 <label class="form-check-label" for="lvl-int">Intermediate</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="lvl-adv" class="level-filter" value="advanced" />
+                <input class="form-check-input level-filter" type="checkbox" id="lvl-adv" value="advanced" />
                 <label class="form-check-label" for="lvl-adv">Advanced</label>
+              </div>
+            </div>
+            <hr />
+            <div class="mb-3">
+              <h6>Price</h6>
+              <div class="form-check">
+                <input class="form-check-input price-filter" type="checkbox" id="price-under50" value="under50" />
+                <label class="form-check-label" for="price-under50">Under $50</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input price-filter" type="checkbox" id="price-50-100" value="50-100" />
+                <label class="form-check-label" for="price-50-100">$50 - $100</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input price-filter" type="checkbox" id="price-over100" value="over100" />
+                <label class="form-check-label" for="price-over100">Over $100</label>
+              </div>
+            </div>
+            <hr />
+            <div class="mb-3">
+              <h6>Rating</h6>
+              <div class="form-check">
+                <input class="form-check-input rating-filter" type="radio" name="rating-filter" id="rating-all" value="all" checked />
+                <label class="form-check-label" for="rating-all">All Ratings</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input rating-filter" type="radio" name="rating-filter" id="rating-45" value="4.5" />
+                <label class="form-check-label" for="rating-45">4.5 Stars & Up</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input rating-filter" type="radio" name="rating-filter" id="rating-40" value="4.0" />
+                <label class="form-check-label" for="rating-40">4.0 Stars & Up</label>
+              </div>
+            </div>
+            <hr />
+            <div class="mb-3">
+              <h6>Duration</h6>
+              <div class="form-check">
+                <input class="form-check-input duration-filter" type="checkbox" id="dur-short" value="short" />
+                <label class="form-check-label" for="dur-short">Short (&lt; 2 hrs)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input duration-filter" type="checkbox" id="dur-medium" value="medium" />
+                <label class="form-check-label" for="dur-medium">Medium (2 - 5 hrs)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input duration-filter" type="checkbox" id="dur-long" value="long" />
+                <label class="form-check-label" for="dur-long">Long (&gt; 5 hrs)</label>
               </div>
             </div>
           </div>
@@ -267,119 +312,10 @@
         <!-- Courses Grid Start -->
         <div class="col-lg-9">
           <div class="row g-4 justify-content-center">
-            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.1s" data-category="dev"
-              data-level="advanced" data-title="Advanced Java Programming Masterclass">
-              <div class="course-item bg-light">
-                <div class="position-relative overflow-hidden">
-                  <img class="img-fluid" src="img/course-1.webp" alt="" />
-                  <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                      style="border-radius: 30px 0 0 30px">Read More</a>
-                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                      style="border-radius: 0 30px 30px 0">Join Now</a>
-                  </div>
-                </div>
-                <div class="text-center p-4 pb-0">
-                  <h3 class="mb-0">$149.00</h3>
-                  <div class="mb-3">
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small>(123)</small>
-                  </div>
-                  <h5 class="mb-4">
-                    Web Design & Development Course for Beginners
-                  </h5>
-                </div>
-                <div class="d-flex border-top">
-                  <small class="flex-fill text-center border-end py-2"><i
-                      class="fa fa-user-tie text-primary me-2"></i>John
-                    Doe</small>
-                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49
-                    Hrs</small>
-                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                    Students</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.3s" data-category="marketing"
-              data-level="intermediate" data-title="Digital Marketing & SEO Specialist">
-              <div class="course-item bg-light">
-                <div class="position-relative overflow-hidden">
-                  <img class="img-fluid" src="img/course-2.webp" alt="" />
-                  <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                      style="border-radius: 30px 0 0 30px">Read More</a>
-                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                      style="border-radius: 0 30px 30px 0">Join Now</a>
-                  </div>
-                </div>
-                <div class="text-center p-4 pb-0">
-                  <h3 class="mb-0">$149.00</h3>
-                  <div class="mb-3">
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small>(123)</small>
-                  </div>
-                  <h5 class="mb-4">
-                    Web Design & Development Course for Beginners
-                  </h5>
-                </div>
-                <div class="d-flex border-top">
-                  <small class="flex-fill text-center border-end py-2"><i
-                      class="fa fa-user-tie text-primary me-2"></i>John
-                    Doe</small>
-                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49
-                    Hrs</small>
-                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                    Students</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.5s" data-category="design"
-              data-level="beginner" data-title="Graphic Design with Adobe Illustrator">
-              <div class="course-item bg-light">
-                <div class="position-relative overflow-hidden">
-                  <img class="img-fluid" src="img/course-3.webp" alt="" />
-                  <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                      style="border-radius: 30px 0 0 30px">Read More</a>
-                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                      style="border-radius: 0 30px 30px 0">Join Now</a>
-                  </div>
-                </div>
-                <div class="text-center p-4 pb-0">
-                  <h3 class="mb-0">$149.00</h3>
-                  <div class="mb-3">
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small class="fa fa-star text-primary"></small>
-                    <small>(123)</small>
-                  </div>
-                  <h5 class="mb-4">
-                    Web Design & Development Course for Beginners
-                  </h5>
-                </div>
-                <div class="d-flex border-top">
-                  <small class="flex-fill text-center border-end py-2"><i
-                      class="fa fa-user-tie text-primary me-2"></i>John
-                    Doe</small>
-                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49
-                    Hrs</small>
-                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                    Students</small>
-                </div>
-              </div>
-            </div>
-            <!-- Course Card 4 (New) -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <!-- Course Card 1 -->
+            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.1s" 
+              data-category="dev" data-level="advanced" data-title="Advanced Java Programming Masterclass"
+              data-price="79" data-rating="5.0" data-duration="2.5">
               <div class="course-item bg-light">
                 <div class="position-relative overflow-hidden">
                   <img class="img-fluid" src="img/course-1.webp" alt="" />
@@ -404,18 +340,17 @@
                 </div>
                 <div class="d-flex border-top">
                   <small class="flex-fill text-center border-end py-2"><i
-                      class="fa fa-user-tie text-primary me-2"></i>Jane
-                    Smith</small>
-                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>2.5
-                    Hrs</small>
-                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>42
-                    Students</small>
+                      class="fa fa-user-tie text-primary me-2"></i>Jane Smith</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>2.5 Hrs</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>42 Students</small>
                 </div>
               </div>
             </div>
 
-            <!-- Course Card 5 (New) -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <!-- Course Card 2 -->
+            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.3s" 
+              data-category="marketing" data-level="intermediate" data-title="Digital Marketing & SEO Specialist"
+              data-price="39" data-rating="4.5" data-duration="1.8">
               <div class="course-item bg-light">
                 <div class="position-relative overflow-hidden">
                   <img class="img-fluid" src="img/course-2.webp" alt="" />
@@ -440,18 +375,17 @@
                 </div>
                 <div class="d-flex border-top">
                   <small class="flex-fill text-center border-end py-2"><i
-                      class="fa fa-user-tie text-primary me-2"></i>Lisa
-                    Jones</small>
-                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.8
-                    Hrs</small>
-                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>55
-                    Students</small>
+                      class="fa fa-user-tie text-primary me-2"></i>Lisa Jones</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.8 Hrs</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>55 Students</small>
                 </div>
               </div>
             </div>
 
-            <!-- Course Card 6 (New) -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+            <!-- Course Card 3 -->
+            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.5s" 
+              data-category="design" data-level="beginner" data-title="Graphic Design with Adobe Illustrator"
+              data-price="59" data-rating="4.0" data-duration="2.0">
               <div class="course-item bg-light">
                 <div class="position-relative overflow-hidden">
                   <img class="img-fluid" src="img/course-3.webp" alt="" />
@@ -476,12 +410,114 @@
                 </div>
                 <div class="d-flex border-top">
                   <small class="flex-fill text-center border-end py-2"><i
-                      class="fa fa-user-tie text-primary me-2"></i>David
-                    Miller</small>
-                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>2.0
-                    Hrs</small>
-                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>19
-                    Students</small>
+                      class="fa fa-user-tie text-primary me-2"></i>David Miller</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>2.0 Hrs</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>19 Students</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Course Card 4 -->
+            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.1s"
+              data-category="design" data-level="beginner" data-title="Web Design & Development Course for Beginners"
+              data-price="149" data-rating="5.0" data-duration="1.5">
+              <div class="course-item bg-light">
+                <div class="position-relative overflow-hidden">
+                  <img class="img-fluid" src="img/course-1.webp" alt="" />
+                  <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                      style="border-radius: 30px 0 0 30px">Read More</a>
+                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3"
+                      style="border-radius: 0 30px 30px 0">Join Now</a>
+                  </div>
+                </div>
+                <div class="text-center p-4 pb-0">
+                  <h3 class="mb-0">$149.00</h3>
+                  <div class="mb-3">
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small>(123)</small>
+                  </div>
+                  <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
+                </div>
+                <div class="d-flex border-top">
+                  <small class="flex-fill text-center border-end py-2"><i
+                      class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Course Card 5 -->
+            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.3s"
+              data-category="dev" data-level="advanced" data-title="Advanced Python Programming Masterclass"
+              data-price="119" data-rating="4.8" data-duration="6.5">
+              <div class="course-item bg-light">
+                <div class="position-relative overflow-hidden">
+                  <img class="img-fluid" src="img/course-2.webp" alt="" />
+                  <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                      style="border-radius: 30px 0 0 30px">Read More</a>
+                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3"
+                      style="border-radius: 0 30px 30px 0">Join Now</a>
+                  </div>
+                </div>
+                <div class="text-center p-4 pb-0">
+                  <h3 class="mb-0">$119.00</h3>
+                  <div class="mb-3">
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small>(72)</small>
+                  </div>
+                  <h5 class="mb-4">Advanced Python Programming Masterclass</h5>
+                </div>
+                <div class="d-flex border-top">
+                  <small class="flex-fill text-center border-end py-2"><i
+                      class="fa fa-user-tie text-primary me-2"></i>Alex Johnson</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>6.5 Hrs</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>72 Students</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Course Card 6 -->
+            <div class="col-lg-4 col-md-6 course-card-item wow fadeInUp" data-wow-delay="0.5s"
+              data-category="marketing" data-level="beginner" data-title="Social Media Marketing Bootcamp"
+              data-price="29" data-rating="4.2" data-duration="1.2">
+              <div class="course-item bg-light">
+                <div class="position-relative overflow-hidden">
+                  <img class="img-fluid" src="img/course-3.webp" alt="" />
+                  <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                      style="border-radius: 30px 0 0 30px">Read More</a>
+                    <a href="404.html" class="flex-shrink-0 btn btn-sm btn-primary px-3"
+                      style="border-radius: 0 30px 30px 0">Join Now</a>
+                  </div>
+                </div>
+                <div class="text-center p-4 pb-0">
+                  <h3 class="mb-0">$29.00</h3>
+                  <div class="mb-3">
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star-half-alt text-primary"></small>
+                    <small>(88)</small>
+                  </div>
+                  <h5 class="mb-4">Social Media Marketing Bootcamp</h5>
+                </div>
+                <div class="d-flex border-top">
+                  <small class="flex-fill text-center border-end py-2"><i
+                      class="fa fa-user-tie text-primary me-2"></i>Emily Watson</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.2 Hrs</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>88 Students</small>
                 </div>
               </div>
             </div>
@@ -626,7 +662,7 @@
         <div class="col-lg-2 col-md-4 contact-info">
           <h5>Contact</h5>
           <p>
-            <i class="fa fa-map-marker-alt"></i>Stackly Clothing, Chinna Tirupathi, Salem, Tamil Nadu - 636008
+            <i class="fa fa-map-marker-alt"></i>Stackly, MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu - 636008
           </p>
           <p><i class="fa fa-envelope"></i>info@stackly.com</p>
           <p><i class="fa fa-phone"></i>0987654321</p>
@@ -726,10 +762,25 @@
           selectedLvls.push($(this).attr("value"));
         });
 
+        var selectedPrices = [];
+        $(".price-filter:checked").each(function () {
+          selectedPrices.push($(this).attr("value"));
+        });
+
+        var ratingLimit = $(".rating-filter:checked").val();
+
+        var selectedDurations = [];
+        $(".duration-filter:checked").each(function () {
+          selectedDurations.push($(this).attr("value"));
+        });
+
         $(".course-card-item").each(function () {
           var title = $(this).attr("data-title").toLowerCase();
           var cat = $(this).attr("data-category");
           var lvl = $(this).attr("data-level");
+          var price = parseFloat($(this).attr("data-price")) || 0;
+          var rating = parseFloat($(this).attr("data-rating")) || 0;
+          var duration = parseFloat($(this).attr("data-duration")) || 0;
 
           var matchesQuery = title.indexOf(query) > -1;
           var matchesCat =
@@ -737,7 +788,51 @@
           var matchesLvl =
             selectedLvls.length === 0 || selectedLvls.indexOf(lvl) > -1;
 
-          if (matchesQuery && matchesCat && matchesLvl) {
+          var matchesPrice = false;
+          if (selectedPrices.length === 0) {
+            matchesPrice = true;
+          } else {
+            for (var i = 0; i < selectedPrices.length; i++) {
+              var pRange = selectedPrices[i];
+              if (pRange === "under50" && price < 50) {
+                matchesPrice = true;
+                break;
+              } else if (pRange === "50-100" && price >= 50 && price <= 100) {
+                matchesPrice = true;
+                break;
+              } else if (pRange === "over100" && price > 100) {
+                matchesPrice = true;
+                break;
+              }
+            }
+          }
+
+          var matchesRating = true;
+          if (ratingLimit && ratingLimit !== "all") {
+            var minRating = parseFloat(ratingLimit);
+            matchesRating = rating >= minRating;
+          }
+
+          var matchesDuration = false;
+          if (selectedDurations.length === 0) {
+            matchesDuration = true;
+          } else {
+            for (var i = 0; i < selectedDurations.length; i++) {
+              var dRange = selectedDurations[i];
+              if (dRange === "short" && duration < 2) {
+                matchesDuration = true;
+                break;
+              } else if (dRange === "medium" && duration >= 2 && duration <= 5) {
+                matchesDuration = true;
+                break;
+              } else if (dRange === "long" && duration > 5) {
+                matchesDuration = true;
+                break;
+              }
+            }
+          }
+
+          if (matchesQuery && matchesCat && matchesLvl && matchesPrice && matchesRating && matchesDuration) {
             $(this).fadeIn(300);
           } else {
             $(this).fadeOut(300);
@@ -746,7 +841,7 @@
       }
 
       $("#search-input").on("keyup", filterCatalog);
-      $(".category-filter, .level-filter").on("change", filterCatalog);
+      $(".category-filter, .level-filter, .price-filter, .rating-filter, .duration-filter").on("change", filterCatalog);
     });
   </script>
 </body>

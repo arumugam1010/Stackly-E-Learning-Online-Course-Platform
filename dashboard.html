@@ -41,6 +41,7 @@
       padding: 0;
       overflow-x: hidden;
     }
+
     body::before {
       display: none !important;
     }
@@ -257,11 +258,18 @@
 
       #panel-container {
         padding: 15px !important;
+        margin-top: 65px !important;
       }
 
       .navbar-dashboard {
         padding: 12px 15px !important;
-        margin-bottom: 15px !important;
+        margin-bottom: 0 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 1030 !important;
       }
 
       .navbar-dashboard h4 {
@@ -297,11 +305,12 @@
 
       #panel-container {
         padding: 4px !important;
+        margin-top: 45px !important;
       }
 
       .navbar-dashboard {
         padding: 2px 4px !important;
-        margin-bottom: 4px !important;
+        margin-bottom: 0 !important;
       }
 
       .navbar-dashboard h4 {
@@ -477,8 +486,10 @@
         </button>
       </div>
 
-      <div class="sidebar-user-profile text-center py-3 border-bottom mb-2" style="border-color: rgba(255, 255, 255, 0.1) !important;">
-        <h6 class="m-0 fw-bold text-capitalize" id="sidebar-user-role" style="font-size: 15px; letter-spacing: 0.5px; color: #3b3db8 !important;">Role : Loading...</h6>
+      <div class="sidebar-user-profile text-center py-3 border-bottom mb-2"
+        style="border-color: rgba(255, 255, 255, 0.1) !important;">
+        <h6 class="m-0 fw-bold text-capitalize" id="sidebar-user-role"
+          style="font-size: 15px; letter-spacing: 0.5px; color: #3b3db8 !important;">Role : Loading...</h6>
       </div>
 
       <ul class="list-unstyled components" id="sidebar-links">
@@ -537,8 +548,8 @@
       <div id="panel-container">
         <!-- Show Welcome message on extra small screens inside the page content container -->
         <div class="w-100 text-start d-block d-md-none mb-3">
-          <h5 class="m-0 fw-bold text-dark" id="welcome-message-mobile"
-            style="font-size: 16px; line-height: 1.2;">Welcome Back!</h5>
+          <h5 class="m-0 fw-bold text-dark" id="welcome-message-mobile" style="font-size: 16px; line-height: 1.2;">
+            Welcome Back!</h5>
         </div>
         <!-- 1. Overview Panel -->
         <div id="panel-overview" class="panel-content">
